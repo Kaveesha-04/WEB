@@ -1,121 +1,38 @@
-# 🔐 PassCheck – Secure Password Utility
-
-A lightweight web application that analyzes password strength, generates secure passwords, and educates users on better digital security practices.
-
----
+# UniGig: Campus Micro-Task & Freelance Board
 
 ## 🌍 The Problem
-
-In today's digital world, **weak passwords are one of the main causes of personal data breaches**.
-Many users struggle to:
-
-* Create **secure passwords**
-* Understand **how strong their passwords really are**
-* Learn **best practices for protecting digital identities**
-
----
+University students often need quick favors, technical help, or have skills they want to monetize locally on campus (e.g., fixing a laptop, tutoring a specific module, or designing a quick flyer). However, relying on messy WhatsApp groups makes it hard to track, filter, and securely connect for these small, one-off tasks.
 
 ## 🛠️ The Solution
+**UniGig** is a centralized, real-time noticeboard designed exclusively for the campus community to:
+1. **Post Gigs:** Quickly request help for a micro-task or project.
+2. **Offer Skills:** Browse open requests and click to accept gigs.
+3. **Connect Securely:** Filter tasks by category and connect with peers without broadcasting personal contact info publicly.
 
-**PassCheck** is a lightweight and responsive web application designed to help users improve their password security.
+## 📂 Project Structure & Naming Conventions
+To maintain a clean workflow while integrating our cloud database, we adhere to the following structure:
 
-### 🔎 Analyze
-
-Get **real-time feedback** on password strength and entropy.
-
-### 🔑 Generate
-
-Instantly generate **randomized, high-strength passwords**.
-
-### 📚 Educate
-
-Learn **best practices for digital identity protection**.
-
----
-
-## 📂 Project Structure
-
-To maintain a **clean workflow** and avoid merge conflicts within our **team of five members**, we follow this modular folder structure:
-
-```
-/
-├── assets/        # Icons & Images
-├── css/
-│   └── style.css  # All CSS styles
-├── js/
-│   └── script.js  # All JavaScript logic
-├── .gitignore     # Junk file filter
-├── LICENSE        # MIT License
-└── README.md      # Project documentation
-```
-
----
-
-## 📛 Naming Conventions
-
-To keep the repository organized, the following naming rules are used.
-
-| Folder/File  | Purpose                         | Naming Convention | Example                               |
-| ------------ | ------------------------------- | ----------------- | ------------------------------------- |
-| `/assets`    | Images, icons, logos            | `snake_case`      | `lock_icon.png`, `dark_bg.jpg`        |
-| `/css`       | Styling and layout              | `kebab-case`      | `.main-container`, `.btn-primary`     |
-| `/js`        | JavaScript logic and algorithms | `camelCase`       | `generatePassword()`, `strengthScore` |
-| `index.html` | Application entry point         | lowercase         | `index.html`                          |
-
----
+| Folder/File | Purpose | Naming Convention |
+| :--- | :--- | :--- |
+| `/assets` | UI images, icons, and logos | `snake_case` (e.g., `hero_banner.jpg`) |
+| `/css` | Main styling and layout | `kebab-case` (e.g., `style.css`, `.btn-primary`) |
+| `/js` | Core logic and Firebase integration | `camelCase` (e.g., `auth.js`, `app.js`) |
+| `index.html` | Dashboard entry point | All lowercase |
 
 ## 🚀 Built With
+* **HTML5 & CSS3** - Responsive, modern dashboard UI.
+* **JavaScript (Vanilla)** - Dynamic DOM manipulation and data rendering.
+* **Firebase Authentication** - Secure user login and session management.
+* **Firebase Firestore** - Real-time NoSQL database for gig postings and user profiles.
 
-* **HTML5** – Semantic structure
-* **CSS3** – Modern responsive design with a cybersecurity dark theme
-* **JavaScript (Vanilla)** – Real-time strength evaluation and password generator logic
+## 👥 The Team
+* **Member 1 (Frontend UI/UX):** Designs dashboard layouts, responsive styling, and gig cards.
+* **Member 2 (Auth & Routing):** Handles Firebase user registration, login, and protected routes.
+* **Member 3 (Database Architect):** Structures Firestore collections and writes read/write security rules.
+* **Member 4 (Dynamic DOM Logic):** Writes the JS to fetch live gig data and inject HTML elements.
+* **Member 5 (QA & Repo Manager):** Populates test data, manages Git branches, and ensures cross-browser stability.
 
----
-
-## ⚙️ How to Run the Project
-
-### 1️⃣ Clone the repository
-
-```bash
-git clone https://github.com/Kaveesha-04/passcheck-tool.git
-```
-
-### 2️⃣ Navigate to the project folder
-
-```bash
-cd passcheck-tool
-```
-
-### 3️⃣ Open the application
-
-Open **index.html** in any modern web browser.
-
----
-
-## 💡 Development Notes
-
-Since the project uses a **modular folder structure**, ensure the correct paths are used in `index.html`.
-
-### CSS Path
-
-```html
-<link rel="stylesheet" href="css/style.css">
-```
-
-### JavaScript Path
-
-```html
-<script src="js/script.js"></script>
-```
-
----
-
-## 📜 License
-
-This project is licensed under the **MIT License**.
-
----
-
-## 🎓 Academic Note
-
-Developed as part of a **real-world problem solving project** at the **University of Moratuwa**.
+## ⚙️ How to Run Locally
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/Kaveesha-04/passcheck-tool.git](https://github.com/Kaveesha-04/passcheck-tool.git)
