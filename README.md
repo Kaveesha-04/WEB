@@ -62,7 +62,7 @@ To prevent Git merge conflicts and allow all 5 team members to develop in parall
 
 1. Clone the repository:
 ```bash
-git clone [Your-Repository-URL-Here]
+git clone https://github.com/Kaveesha-04/WEB
 
 ```
 
@@ -70,5 +70,3 @@ git clone [Your-Repository-URL-Here]
 2. Open the project folder in VS Code.
 3. Ensure you have the `firebase-config.js` file set up with the active project keys (request these from the Project Lead).
 4. Right-click `index.html` and select **"Open with Live Server"**.
-
-```
