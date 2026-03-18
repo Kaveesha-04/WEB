@@ -172,34 +172,86 @@ form[data-mode="signup"] .signup-only {
 }
 
 /* --- SOCIAL AUTHENTICATION UI --- */
+/* Fix 1: Add max-height and overflow to the main card */
+.auth-card {
+    background: var(--surface); 
+    border: 1px solid var(--border-subtle);
+    width: 100%; 
+    max-width: 400px; 
+    padding: 32px; 
+    border-radius: var(--radius-md);
+    transform: translateY(10px); 
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    
+    /* NEW: Forces the card to stay on screen and scroll internally if needed */
+    max-height: 90vh; 
+    overflow-y: auto; 
+}
+
+/* Hide the ugly default scrollbar but keep the scrolling function */
+.auth-card::-webkit-scrollbar {
+    width: 4px;
+}
+.auth-card::-webkit-scrollbar-thumb {
+    background: var(--border-hover);
+    border-radius: 4px;
+}
+
+/* Fix 2: Compact the Social UI */
+/* --- SOCIAL AUTHENTICATION UI --- */
 .social-group {
-    display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Reduced gap */
+    margin-bottom: 16px; /* Tighter margin */
 }
 
 .btn-social {
-    width: 100%; background: transparent; border: 1px solid var(--border-subtle);
-    color: var(--text-primary); display: flex; align-items: center; justify-content: center;
-    gap: 12px; font-weight: 500;
+    width: 100%;
+    height: 38px; /* Slimmer height so it doesn't fight the main button */
+    background: transparent;
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 0.8rem; /* Smaller text */
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s;
 }
 
 .btn-social:hover {
-    background: var(--surface); border-color: var(--border-hover);
+    background: var(--surface);
+    border-color: var(--border-hover);
 }
 
 .btn-social img {
-    width: 20px; height: 20px;
+    width: 18px; /* Strictly locked icon size */
+    height: 18px;
+    object-fit: contain;
 }
 
-/* The Professional "OR" Divider */
+/* Tighter Divider */
 .divider {
-    display: flex; align-items: center; text-align: center; color: var(--text-muted);
-    font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.05em; margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 16px 0; /* Squeezed the top and bottom margins */
 }
 
 .divider::before,
 .divider::after {
-    content: ''; flex: 1;
+    content: '';
+    flex: 1;
     border-bottom: 1px solid var(--border-subtle);
 }
 
