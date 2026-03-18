@@ -1,44 +1,121 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UniGig | The Student Economy</title>
+    <title>UniGig | Student Marketplace</title>
     <link rel="stylesheet" href="css/global.css">
 </head>
 <body>
 
-    <div class="container">
-        <header>
+    <header>
+        <div class="container" style="display: flex; width: 100%; justify-content: space-between; align-items: center;">
             <div class="logo">UNI<span>GIG</span></div>
-            <nav>
-                <button class="btn btn-ghost" onclick="toggleAuth()">Sign In</button>
-            </nav>
-        </header>
+            <div style="display: flex; gap: 12px;">
+                <button class="btn btn-outline" onclick="openModal('login')">Log in</button>
+                <button class="btn btn-primary" onclick="openModal('signup')">Sign up</button>
+            </div>
+        </div>
+    </header>
 
+    <main class="container">
         <section class="hero">
-            <h1>The marketplace for <br> Moratuwa Students.</h1>
-            <p>Exchange skills, find tech help, or pick up a weekend gig. Built by students, for students.</p>
-            <div class="hero-btns">
-                <a href="#auth" class="btn btn-primary">Get Started</a>
-                <a href="#" class="btn btn-ghost" style="margin-left: 10px;">Browse Gigs</a>
+            <div class="badge animate-up">Version 1.0 • UoM Exclusive</div>
+            <h1 class="animate-up delay-1">The campus <br><span>freelance network.</span></h1>
+            <p class="subtitle animate-up delay-2">Monetize your skills, outsource your minor tasks, and build your portfolio within the university community.</p>
+            
+            <div class="animate-up delay-3" style="display: flex; gap: 16px;">
+                <button class="btn btn-primary" onclick="openModal('signup')">Start exploring</button>
+                <a href="https://github.com" target="_blank" class="btn btn-outline">View documentation</a>
             </div>
         </section>
+    </main>
 
-        <div id="auth" class="auth-container">
-            <h2 style="margin-bottom: 1.5rem; font-size: 1.2rem;">Create your account</h2>
-            <form id="auth-form">
-                <input type="email" id="email" placeholder="UoM Email (@uom.lk)" required>
-                <input type="password" id="password" placeholder="Password" required>
-                <button type="submit" class="btn btn-primary" style="width: 100%;">Continue</button>
+    <!-- Authentication Modal Overlay -->
+    <div class="modal-overlay" id="authModal" onclick="closeModal(event)">
+        <div class="auth-card" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="closeModal()" aria-label="Close">&times;</button>
+            <div class="tab-group">
+                <button class="tab active" id="tab-login" onclick="switchTab('login')">Log in</button>
+                <button class="tab" id="tab-signup" onclick="switchTab('signup')">Sign up</button>
+            </div>
+
+            <!-- The data-mode attribute is key here! -->
+            <form id="authForm" data-mode="login">
+                
+                <div class="form-group signup-only">
+                    <label>Full Name</label>
+                    <input type="text" id="fullName" placeholder="Display name for your profile">
+                </div>
+
+                <div class="form-group">
+                    <label>UoM Email Address</label>
+                    <input type="email" id="email" placeholder="student@uom.lk" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+
+                <div class="form-group signup-only">
+                    <label>Confirm Password</label>
+                    <input type="password" id="confirmPassword" placeholder="••••••••">
+                </div>
+                
+                <button type="submit" class="btn btn-accent" id="submitBtn" style="width: 100%;">
+                    Log in to UniGig
+                </button>
             </form>
-            <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 1rem; text-align: center;">
-                By continuing, you agree to the UniGig Terms of Service.
-            </p>
         </div>
     </div>
 
+    <!-- UI Logic for the Modal -->
+    <script>
+        const modal = document.getElementById('authModal');
+        const loginTab = document.getElementById('tab-login');
+        const signupTab = document.getElementById('tab-signup');
+        const submitBtn = document.getElementById('submitBtn');
+        const authForm = document.getElementById('authForm');
+
+        function openModal(mode) {
+            modal.classList.add('active');
+            switchTab(mode);
+        }
+
+        function closeModal(event) {
+            if (!event || event.target === modal) {
+                modal.classList.remove('active');
+            }
+        }
+
+        function switchTab(mode) {
+            const fullNameInput = document.getElementById('fullName');
+            const confirmPwdInput = document.getElementById('confirmPassword');
+
+            if (mode === 'login') {
+                loginTab.classList.add('active');
+                signupTab.classList.remove('active');
+                submitBtn.textContent = 'Log in to UniGig';
+                
+                // Remove required attributes so the user can log in
+                fullNameInput.removeAttribute('required');
+                confirmPwdInput.removeAttribute('required');
+            } else {
+                loginTab.classList.remove('active');
+                signupTab.classList.add('active');
+                submitBtn.textContent = 'Create account';
+                
+                // Add required attributes for sign up
+                fullNameInput.setAttribute('required', 'true');
+                confirmPwdInput.setAttribute('required', 'true');
+            }
+            
+            authForm.setAttribute('data-mode', mode);
+        }
+    </script>
+    
+    <!-- Firebase Logic (ES6 Module) -->
     <script type="module" src="js/auth.js"></script>
 </body>
 </html>
