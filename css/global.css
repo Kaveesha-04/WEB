@@ -170,3 +170,38 @@ form[data-mode="signup"] .signup-only {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* --- SOCIAL AUTHENTICATION UI --- */
+.social-group {
+    display: flex; flex-direction: column; gap: 12px; margin-bottom: 24px;
+}
+
+.btn-social {
+    width: 100%; background: transparent; border: 1px solid var(--border-subtle);
+    color: var(--text-primary); display: flex; align-items: center; justify-content: center;
+    gap: 12px; font-weight: 500;
+}
+
+.btn-social:hover {
+    background: var(--surface); border-color: var(--border-hover);
+}
+
+.btn-social img {
+    width: 20px; height: 20px;
+}
+
+/* The Professional "OR" Divider */
+.divider {
+    display: flex; align-items: center; text-align: center; color: var(--text-muted);
+    font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.05em; margin-bottom: 24px;
+}
+
+.divider::before,
+.divider::after {
+    content: ''; flex: 1;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.divider::before { margin-right: 16px; }
+.divider::after { margin-left: 16px; }
