@@ -270,3 +270,49 @@ form[data-mode="signup"] .signup-only {
 
 .divider::before { margin-right: 16px; }
 .divider::after { margin-left: 16px; }
+
+/* --- FORGOT PASSWORD UI --- */
+.forgot-link {
+    font-size: 0.75rem; color: var(--accent); text-decoration: none;
+    font-weight: 500; transition: color 0.2s;
+}
+
+.forgot-link:hover {
+    color: var(--text-primary); text-decoration: underline;
+}
+
+/* Hide the forgot link when in Sign Up mode */
+form[data-mode="signup"] .login-only {
+    display: none;
+}
+
+/* --- PASSWORD TOGGLE UI --- */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input {
+    /* Add extra padding on the right so text doesn't hide behind the icon */
+    padding-right: 48px; 
+    margin-bottom: 20px; /* Keep your existing margin */
+}
+
+.toggle-password {
+    position: absolute;
+    right: 16px;
+    top: 22px; /* Centers it vertically based on your 44px input height */
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.toggle-password:hover, .toggle-password.active {
+    color: var(--text-primary);
+}
