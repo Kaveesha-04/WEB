@@ -40,7 +40,7 @@
                 <button class="tab" id="tab-signup" onclick="switchTab('signup')">Sign up</button>
             </div>
 
-            <div class="social-group">
+            <div class="social-group" id="socialGroup">
                 <button class="btn btn-social" id="googleBtn">
                     <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
                     Continue with Google
@@ -51,7 +51,7 @@
                 </button>
             </div>
 
-            <div class="divider">or continue with email</div>
+            <div class="divider" id="socialDivider">or continue with email</div>
 
             <!-- The data-mode attribute is key here! -->
             <form id="authForm" data-mode="login">
@@ -105,23 +105,33 @@
         function switchTab(mode) {
             const fullNameInput = document.getElementById('fullName');
             const confirmPwdInput = document.getElementById('confirmPassword');
+            
+            // Grab the new social elements
+            const socialGroup = document.getElementById('socialGroup');
+            const socialDivider = document.getElementById('socialDivider');
 
             if (mode === 'login') {
                 loginTab.classList.add('active');
                 signupTab.classList.remove('active');
                 submitBtn.textContent = 'Log in to UniGig';
                 
-                // Remove required attributes so the user can log in
                 fullNameInput.removeAttribute('required');
                 confirmPwdInput.removeAttribute('required');
+                
+                // SHOW the social buttons
+                socialGroup.style.display = 'flex';
+                socialDivider.style.display = 'flex';
             } else {
                 loginTab.classList.remove('active');
                 signupTab.classList.add('active');
                 submitBtn.textContent = 'Create account';
                 
-                // Add required attributes for sign up
                 fullNameInput.setAttribute('required', 'true');
                 confirmPwdInput.setAttribute('required', 'true');
+                
+                // HIDE the social buttons to keep the card clean
+                socialGroup.style.display = 'none';
+                socialDivider.style.display = 'none';
             }
             
             authForm.setAttribute('data-mode', mode);
