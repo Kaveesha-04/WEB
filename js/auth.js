@@ -96,8 +96,4 @@ authForm.addEventListener('submit', (e) => {
     document.getElementById('appleBtn').addEventListener('click', () => {
         alert("Apple Developer account required to configure this feature.");
     });
-
-    document.getElementById('microsoftBtn').addEventListener('click', () => {
-        alert("Azure Active Directory configuration required to configure this feature.");
-    });
 });
