@@ -1,1 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | UniGig</title>
+    <link rel="stylesheet" href="css/global.css">
+</head>
+<body>
 
+    <header>
+        <div class="container" style="display: flex; width: 100%; justify-content: space-between; align-items: center;">
+            <div class="logo">UNI<span>GIG</span></div>
+            <div style="display: flex; gap: 16px; align-items: center;">
+                <a href="dashboard.html" class="btn btn-outline">Back to Feed</a>
+                <button class="btn btn-outline" id="logoutBtn">Log Out</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" style="padding-top: 40px; padding-bottom: 80px;">
+        
+        <section class="profile-header-card">
+            <div class="avatar-large" id="profileAvatar"></div>
+            <div class="profile-info" style="flex: 1;">
+                <h1 id="profileName">Loading...</h1>
+                <p id="profileEmail">...</p>
+                
+                <div class="profile-stats">
+                    <div class="stat-box">
+                        <span id="statActiveGigs">0</span>
+                        <label>Active Gigs</label>
+                    </div>
+                    <div class="stat-box">
+                        <span id="statCompleted">0</span>
+                        <label>Completed</label>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 12px;">
+                    <button class="btn btn-accent" id="editProfileBtn">Edit Profile</button>
+                    <button class="btn btn-outline" id="settingsBtn">Settings</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="activity-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 16px; margin-bottom: 24px;">
+                <h2>My Posted Gigs</h2>
+                <button class="btn btn-primary btn-sm" id="postNewGigBtn">+ Create New</button>
+            </div>
+
+            <div id="myGigsGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px;">
+                <div class="auth-card" style="transform: none; width: 100%; max-width: 100%; padding: 24px; text-align: center; color: var(--text-muted);">
+                    You haven't posted any gigs yet.
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script type="module" src="js/profile.js"></script>
+</body>
+</html>
