@@ -13,8 +13,8 @@
             <div class="logo">UNI<span>GIG</span></div>
             
             <div class="nav-links">
-                <a href="#" class="nav-link hidden-mobile">Explore</a>
-                <a href="#" class="nav-link hidden-mobile" style="color: var(--accent); font-weight: 500;">Become a Freelancer</a>
+                <a href="#" class="nav-link hidden-mobile" onclick="openModal('login'); return false;">Explore</a>
+                <a href="#" class="nav-link hidden-mobile" style="color: var(--accent); font-weight: 500;" onclick="openModal('signup'); return false;">Become a Freelancer</a>
                 <div class="nav-divider hidden-mobile"></div>
                 <button class="btn btn-outline" onclick="openModal('login')">Log in</button>
                 <button class="btn btn-primary" onclick="openModal('signup')">Sign up</button>
@@ -32,15 +32,15 @@
                     
                     <div class="hero-search-box">
                         <input type="text" placeholder="What service are you looking for today?">
-                        <button class="btn btn-accent search-btn">Search</button>
+                        <button class="btn btn-accent search-btn" onclick="openModal('signup')">Search</button>
                     </div>
 
                     <div class="popular-categories">
                         <span style="color: var(--text-muted); font-size: 0.9rem; font-weight: 500;">Popular:</span>
-                        <span class="category-pill">Web Development</span>
-                        <span class="category-pill">Hardware / IoT</span>
-                        <span class="category-pill">Cybersecurity</span>
-                        <span class="category-pill">Tutoring</span>
+                        <span class="category-pill" onclick="openModal('signup')">Web Development</span>
+                        <span class="category-pill" onclick="openModal('signup')">Hardware / IoT</span>
+                        <span class="category-pill" onclick="openModal('signup')">Cybersecurity</span>
+                        <span class="category-pill" onclick="openModal('signup')">Tutoring</span>
                     </div>
                 </div>
 
