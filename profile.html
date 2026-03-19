@@ -59,6 +59,27 @@
 
     </main>
 
+    <div class="modal-overlay" id="editProfileModal">
+        <div class="auth-card" onclick="event.stopPropagation()">
+            <h2 style="margin-bottom: 24px;">Edit Profile</h2>
+            
+            <div class="form-group">
+                <label>University Major</label>
+                <input type="text" id="majorInput" placeholder="e.g. Computer Science">
+            </div>
+            
+            <div class="form-group">
+                <label>Short Bio</label>
+                <input type="text" id="bioInput" placeholder="I am a developer who loves building...">
+            </div>
+
+            <div style="display: flex; gap: 12px; margin-top: 16px;">
+                <button class="btn btn-accent" id="saveProfileBtn" style="flex: 1;">Save Changes</button>
+                <button class="btn btn-outline" id="cancelEditBtn" style="flex: 1;">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <script type="module" src="js/profile.js"></script>
     <script type="module" src="js/board.js"></script>
 </body>
