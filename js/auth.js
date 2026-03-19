@@ -6,8 +6,13 @@ import {
     updateProfile,
     GoogleAuthProvider,
     signInWithPopup,
-    sendPasswordResetEmail
+    sendPasswordResetEmail,
+    setPersistence,
+    browserSessionPersistence
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+// Force Session Persistence
+setPersistence(auth, browserSessionPersistence).catch(e => console.error("Persistence Error:", e));
 
 // ==========================================
 // 0. UI MODAL TOGGLES
@@ -18,7 +23,7 @@ const signupTab = document.getElementById('tab-signup');
 const submitBtn = document.getElementById('submitBtn');
 const authForm = document.getElementById('authForm');
 const socialGroup = document.getElementById('socialGroup');
-const navExploreBtn = document.getElementById('navExploreBtn');
+// Explore Services listener removed for external GitHub routing
 const navLoginBtn = document.getElementById('navLoginBtn');
 const navSignupBtn = document.getElementById('navSignupBtn');
 const closeModalBtn = document.getElementById('closeModalBtn');
@@ -47,7 +52,7 @@ function switchTab(mode) {
         if(submitBtn) submitBtn.textContent = 'Log in';
         if(fullNameInput) fullNameInput.removeAttribute('required');
         if(confirmPwdInput) confirmPwdInput.removeAttribute('required');
-        if(socialGroup) socialGroup.style.display = 'flex';
+        if(socialGroup) socialGroup.style.display = 'block';
     } else {
         if(loginTab) { loginTab.classList.remove('active'); signupTab.classList.add('active'); }
         if(submitBtn) submitBtn.textContent = 'Create account';
@@ -60,7 +65,7 @@ function switchTab(mode) {
 }
 
 // Bind Events
-if(navExploreBtn) navExploreBtn.addEventListener('click', (e) => { e.preventDefault(); openModal('login'); });
+
 if(navLoginBtn) navLoginBtn.addEventListener('click', () => openModal('login'));
 if(navSignupBtn) navSignupBtn.addEventListener('click', () => openModal('signup'));
 if(closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
@@ -69,9 +74,52 @@ if(authCardBox) authCardBox.addEventListener('click', (e) => e.stopPropagation()
 if(loginTab) loginTab.addEventListener('click', () => switchTab('login'));
 if(signupTab) signupTab.addEventListener('click', () => switchTab('signup'));
 
-pillSignupTriggers.forEach(pill => {
-    pill.addEventListener('click', () => openModal('signup'));
-});
+const heroSearchBtn = document.getElementById('heroSearchBtn');
+const heroSearchInput = document.getElementById('heroSearchInput');
+const popularSearchesContainer = document.getElementById('popularSearchesContainer');
+const defaultSearches = ["Website Dev", "Data Analytics", "Tutoring", "UI/UX Design"];
+
+function renderPopularSearches() {
+    if (!popularSearchesContainer) return;
+    
+    let savedSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
+    if (savedSearches.length === 0) savedSearches = defaultSearches;
+    
+    const isRecent = JSON.parse(localStorage.getItem('recentSearches')) ? true : false;
+    let html = `<span style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-right: 8px;">${isRecent ? 'Recent:' : 'Popular:'}</span>\n`;
+    
+    savedSearches.slice(0, 4).forEach(term => {
+        html += `<span class="category-pill pillSignupTrigger">${term}</span>\n`;
+    });
+    
+    popularSearchesContainer.innerHTML = html;
+    
+    // Re-bind listeners for newly generated elements
+    document.querySelectorAll('.pillSignupTrigger').forEach(pill => {
+        pill.addEventListener('click', (e) => {
+            if(heroSearchInput) {
+                heroSearchInput.value = e.target.textContent;
+            }
+        });
+    });
+}
+
+if (heroSearchBtn) {
+    heroSearchBtn.addEventListener('click', () => {
+        if(heroSearchInput && heroSearchInput.value.trim() !== "") {
+            const term = heroSearchInput.value.trim();
+            let saved = JSON.parse(localStorage.getItem('recentSearches')) || [];
+            // Prepend new term, remove existing duplicate
+            saved = [term, ...saved.filter(s => s.toLowerCase() !== term.toLowerCase())].slice(0, 4);
+            localStorage.setItem('recentSearches', JSON.stringify(saved));
+            renderPopularSearches();
+        }
+        openModal('login');
+    });
+}
+
+// Call initially
+renderPopularSearches();
 
 // ==========================================
 // 1. GOOGLE SIGN-IN LOGIC
@@ -100,7 +148,7 @@ if (googleBtn) {
                     alert("Google Sign-In failed. Please try again.");
                 }
 
-                googleBtn.innerHTML = `<img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google"> Continue with Google`;
+                googleBtn.innerHTML = `<img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" style="width: 18px; height: 18px; margin-right: 4px;"> Login with Google`;
                 googleBtn.disabled = false;
             });
     });

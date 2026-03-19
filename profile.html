@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,20 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/auth.css">
 </head>
-<body style="background: var(--bg-base);">
 
+<body style="background: var(--bg-base); display: none;">
     <header class="main-nav">
         <div class="container nav-container">
-            <div class="logo">UNI<span>GIG</span></div>
+                <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                    <div style="width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent) 0%, #a855f7 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(79, 70, 229, 0.4);">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <span style="color: var(--text-primary); line-height: 1; font-size: 1.5rem;">Uni<span style="background: linear-gradient(135deg, var(--accent) 0%, #a855f7 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Gig</span></span>
+                </a>
             <div class="nav-links">
                 <a href="dashboard.html" class="nav-link" style="font-weight: 600;">Back to Dashboard</a>
                 <button class="btn btn-danger" id="logoutBtn">Log Out</button>
@@ -23,29 +33,28 @@
 
         <aside>
             <div class="card" style="text-align: center; margin-bottom: 24px;">
-                <div class="avatar" id="profileAvatar">U</div>
-                <h2 id="profileName" style="margin-bottom: 4px; font-size: 1.25rem;">Loading...</h2>
-                <p id="profileMajor" style="margin-bottom: 24px;">Student</p>
-
-                <button class="btn btn-outline" id="editProfileBtn" style="width: 100%; margin-bottom: 24px;">Edit Profile</button>
-
-                <div style="background: #f1f5f9; padding: 16px; border-radius: var(--radius-sm); text-align: left;">
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                        <span style="font-size: 0.85rem; color: var(--text-muted);">University</span>
-                        <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-primary);">UoM</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between;">
-                        <span style="font-size: 0.85rem; color: var(--text-muted);">Status</span>
-                        <span style="font-size: 0.85rem; font-weight: 600; color: var(--success);">Verified</span>
-                    </div>
+                <div class="avatar" id="profileAvatar"
+                    style="position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; background: var(--bg-hover); margin: 0 auto 16px;">
+                    <img id="profileImageDisplay" src="" alt="Profile Picture"
+                        style="width: 100%; height: 100%; object-fit: cover; position: absolute; top:0; left:0; display: none;">
+                    <span id="profileInitial">U</span>
                 </div>
+                <h2 id="profileName" style="margin-bottom: 4px; font-size: 1.25rem;"></h2>
+                <p id="profileMajor" style="margin-bottom: 24px; color: var(--text-muted); font-size: 0.95rem;"></p>
+
+                <button class="btn btn-outline" id="editProfileBtn" style="width: 100%;">Edit Profile</button>
             </div>
 
             <div class="card">
-                <h3 style="font-size: 1.1rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 12px; margin-bottom: 16px;">About Me</h3>
-                <p id="profileBio" style="font-size: 0.95rem;">No bio added yet. Click edit profile to tell the campus about your expertise.</p>
+                <h3
+                    style="font-size: 1.1rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 12px; margin-bottom: 16px;">
+                    About Me</h3>
+                <p id="profileBio" style="font-size: 0.95rem;">No bio added yet. Click edit profile to tell the campus
+                    about your expertise.</p>
 
-                <h3 style="font-size: 1.1rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 12px; margin: 24px 0 16px;">Skills</h3>
+                <h3
+                    style="font-size: 1.1rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 12px; margin: 24px 0 16px;">
+                    Skills</h3>
                 <div id="skillsContainer" style="display: flex; flex-wrap: wrap; gap: 8px;">
                     <span style="font-size: 0.85rem; color: var(--text-muted);">No skills added yet.</span>
                 </div>
@@ -53,15 +62,35 @@
         </aside>
 
         <section>
+            <div class="card" style="margin-bottom: 24px; padding: 24px;">
+                <h2 style="font-size: 1.5rem; margin-bottom: 16px;">Inbox & Notifications</h2>
+                <div id="notificationsFeed" style="display: flex; flex-direction: column; gap: 12px;">
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Checking for messages...</p>
+                </div>
+            </div>
+
             <div class="card-header">
-                <h2 style="font-size: 1.5rem;">My Workflow</h2>
+                <h2 style="font-size: 1.5rem;">My Posted Tasks</h2>
                 <button class="btn btn-accent" id="postGigBtn">Create New Task</button>
             </div>
 
-            <div id="myGigsGrid" class="gig-grid" style="display: grid; gap: 16px;">
+            <div id="myGigsGrid" class="gig-grid" style="margin-bottom: 32px; display: grid; gap: 16px;">
                 <div class="card" style="text-align: center; padding: 60px 20px;">
-                    <p style="font-size: 1.1rem; font-weight: 500; color: var(--text-primary); margin-bottom: 8px;">No active tasks</p>
+                    <p style="font-size: 1.1rem; font-weight: 500; color: var(--text-primary); margin-bottom: 8px;">No
+                        active tasks</p>
                     <p>Post your first task to start collaborating with the campus network.</p>
+                </div>
+            </div>
+
+            <div class="card-header">
+                <h2 style="font-size: 1.5rem;">Tasks I'm Working On</h2>
+            </div>
+
+            <div id="myAcceptedGigsGrid" class="gig-grid" style="display: grid; gap: 16px;">
+                <div class="card" style="text-align: center; padding: 60px 20px;">
+                    <p style="font-size: 1.1rem; font-weight: 500; color: var(--text-primary); margin-bottom: 8px;">No
+                        accepted tasks</p>
+                    <p>Visit the Dashboard to browse and accept tasks posted by other students.</p>
                 </div>
             </div>
         </section>
@@ -75,16 +104,23 @@
                 <h2 style="font-size: 1.5rem;">Post a Task</h2>
                 <button class="close-btn" id="closePostModalBtn">✕</button>
             </div>
-            
+
             <form id="postGigForm">
                 <div class="form-group">
                     <label>Task Title</label>
-                    <input type="text" id="gigTitle" placeholder="I will build a full-stack website..." required>
+                    <input type="text" id="gigTitle" placeholder="A full-stack website" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Cover Image (Optional)</label>
+                    <input type="file" id="gigImage" accept="image/png, image/jpeg, image/jpg"
+                        style="width: 100%; padding: 8px 0;">
                 </div>
 
                 <div class="form-group">
                     <label>Category</label>
-                    <select id="gigCategory" required style="width: 100%; height: 44px; padding: 0 16px; background: #ffffff; border: 1px solid var(--border-focus); border-radius: var(--radius-sm); font-size: 0.95rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s; margin-bottom: 20px;">
+                    <select id="gigCategory" required
+                        style="width: 100%; height: 44px; padding: 0 16px; background: #ffffff; border: 1px solid var(--border-focus); border-radius: var(--radius-sm); font-size: 0.95rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s; margin-bottom: 20px;">
                         <option value="" disabled selected>Select a category</option>
                         <option value="Website Dev">Website Dev</option>
                         <option value="Data Analytics">Data Analytics</option>
@@ -95,7 +131,8 @@
 
                 <div class="form-group">
                     <label>Description</label>
-                    <textarea id="gigDescription" placeholder="Describe the service you are offering..." rows="4" required></textarea>
+                    <textarea id="gigDescription" placeholder="Describe the service you are offering..." rows="4"
+                        required></textarea>
                 </div>
 
                 <div class="form-group">
@@ -103,7 +140,8 @@
                     <input type="number" id="gigPrice" placeholder="e.g. 5000" min="0" required>
                 </div>
 
-                <button type="submit" class="btn btn-accent" id="submitGigBtn" style="width: 100%; margin-top: 8px;">Publish Gig</button>
+                <button type="submit" class="btn btn-accent" id="submitGigBtn"
+                    style="width: 100%; margin-top: 8px;">Publish Gig</button>
             </form>
         </div>
     </div>
@@ -116,14 +154,21 @@
                 <button class="close-btn" id="closeEditModalBtn">✕</button>
             </div>
 
+            <div class="form-group" style="text-align: center; margin-bottom: 24px;">
+                <label style="display: block; margin-bottom: 8px;">Profile Picture</label>
+                <input type="file" id="profileImageInput" accept="image/*"
+                    style="font-size: 0.9rem; margin: 0 auto; display: block;">
+            </div>
+
             <div class="form-group">
-                <label>Degree / Major</label>
+                <label>Degree</label>
                 <input type="text" id="majorInput" placeholder="e.g. BSc. Computer Science">
             </div>
 
             <div class="form-group">
                 <label>Professional Bio</label>
-                <textarea id="bioInput" placeholder="Summarize your academic background and professional interests..." rows="4"></textarea>
+                <textarea id="bioInput" placeholder="Summarize your academic background and professional interests..."
+                    rows="4"></textarea>
             </div>
 
             <div class="form-group">
@@ -131,13 +176,41 @@
                 <input type="text" id="skillsInput" placeholder="e.g. Python, UI Design, Calculus">
             </div>
 
-            <button class="btn btn-accent" id="saveProfileBtn" style="width: 100%; margin-top: 16px;">Save Changes</button>
+            <button class="btn btn-accent" id="saveProfileBtn" style="width: 100%; margin-top: 16px;">Save
+                Changes</button>
         </div>
     </div>
 
-    <!-- Need to include guard if there is one -->
+    <!-- Modal for Rating User -->
+    <div class="modal-overlay" id="ratingModal">
+        <div class="auth-card" style="max-width: 400px; text-align: center;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <h2 style="font-size: 1.25rem;">Rate Completed Work</h2>
+                <button class="close-btn" id="closeRatingModalBtn">✕</button>
+            </div>
+
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 24px;">How was your experience
+                working with <strong id="ratingWorkerName">the freelancer</strong>?</p>
+
+            <div id="starContainer"
+                style="display: flex; justify-content: center; gap: 8px; margin-bottom: 24px; font-size: 2rem; color: #cbd5e1; cursor: pointer;">
+                <span class="star" data-val="1">★</span>
+                <span class="star" data-val="2">★</span>
+                <span class="star" data-val="3">★</span>
+                <span class="star" data-val="4">★</span>
+                <span class="star" data-val="5">★</span>
+            </div>
+
+            <input type="hidden" id="ratingValue" value="0">
+            <input type="hidden" id="ratingGigId" value="">
+            <input type="hidden" id="ratingWorkerId" value="">
+
+            <button class="btn btn-primary" id="submitRatingBtn" style="width: 100%;">Submit Rating & Complete</button>
+        </div>
+    </div>
+
     <script type="module" src="js/profile.js"></script>
     <script type="module" src="js/auth.js"></script>
-    <script type="module" src="js/board.js"></script>
 </body>
+
 </html>

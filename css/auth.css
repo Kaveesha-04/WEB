@@ -9,6 +9,12 @@
     grid-template-columns: 280px 1fr;
     gap: 32px;
     padding: 40px 0;
+    align-items: start;
+}
+
+.workspace-grid aside {
+    position: sticky;
+    top: 100px;
 }
 
 .avatar {

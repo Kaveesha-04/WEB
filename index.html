@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +8,31 @@
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/auth.css">
 </head>
+
 <body>
 
     <header class="main-nav">
         <div class="container nav-container">
-            <div class="logo">UNI<span>GIG</span></div>
+            <a href="index.html" class="logo"
+                style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                <div
+                    style="width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent) 0%, #a855f7 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(79, 70, 229, 0.4);">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <span style="color: var(--text-primary); line-height: 1; font-size: 1.5rem;">Uni<span
+                        style="background: linear-gradient(135deg, var(--accent) 0%, #a855f7 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Gig</span></span>
+            </a>
 
             <div class="nav-links">
-                <a href="#" class="nav-link" id="navExploreBtn">Explore Services</a>
+                <a href="https://github.com/Kaveesha-04/WEB" target="_blank" class="nav-link"
+                    id="navDocsBtn">Documentation</a>
                 <button class="btn btn-outline" id="navLoginBtn">Log in</button>
                 <button class="btn btn-primary" id="navSignupBtn">Sign up</button>
             </div>
@@ -24,28 +42,31 @@
     <main>
         <section class="hero-section">
             <div class="container hero-grid">
-                
+
                 <div class="hero-content">
                     <h1>Hire talented UOM students for your next project.</h1>
-                    <p>Connect with vetted freelancers on campus. From software engineering to graphic design, find the talent you need.</p>
+                    <p>Connect with vetted freelancers on campus. From software engineering to graphic design, find the
+                        talent you need.</p>
 
                     <div class="hero-search-box">
-                        <input type="text" placeholder="What service are you looking for?">
-                        <button class="btn btn-accent search-btn" onclick="openModal('signup')">Search</button>
+                        <input type="text" id="heroSearchInput" placeholder="What service are you looking for?">
+                        <button class="btn btn-accent search-btn" id="heroSearchBtn">Search</button>
                     </div>
 
-                    <div>
-                        <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-right: 8px;">Popular:</span>
-                        <span class="category-pill" class="pillSignupTrigger">Website Dev</span>
-                        <span class="category-pill" class="pillSignupTrigger">Data Analytics</span>
-                        <span class="category-pill" class="pillSignupTrigger">Tutoring</span>
-                        <span class="category-pill" class="pillSignupTrigger">UI/UX Design</span>
+                    <div id="popularSearchesContainer">
+                        <span
+                            style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-right: 8px;">Popular:</span>
+                        <span class="category-pill pillSignupTrigger">Website Dev</span>
+                        <span class="category-pill pillSignupTrigger">Data Analytics</span>
+                        <span class="category-pill pillSignupTrigger">Tutoring</span>
+                        <span class="category-pill pillSignupTrigger">UI/UX Design</span>
                     </div>
                 </div>
 
                 <div class="hero-image-wrapper">
                     <!-- High quality professional unslpash image of workspace -->
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Students collaborating">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                        alt="Students collaborating">
                 </div>
 
             </div>
@@ -53,18 +74,24 @@
 
         <!-- Value Proposition Section -->
         <section style="padding: 80px 0; background: var(--bg-base);">
-            <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+            <div class="container"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
                 <div class="card">
                     <h3 style="margin-bottom: 12px; color: var(--text-primary); font-size: 1.25rem;">Quality Work</h3>
-                    <p>Every freelancer uses a verified University of Moratuwa email address, ensuring quality and accountability.</p>
+                    <p>Every freelancer uses a verified University of Moratuwa email address, ensuring quality and
+                        accountability.</p>
                 </div>
                 <div class="card">
-                    <h3 style="margin-bottom: 12px; color: var(--text-primary); font-size: 1.25rem;">Student Budgets</h3>
-                    <p>Fair pricing that respects both the talent's time and the student client's budget constraints.</p>
+                    <h3 style="margin-bottom: 12px; color: var(--text-primary); font-size: 1.25rem;">Student Budgets
+                    </h3>
+                    <p>Fair pricing that respects both the talent's time and the student client's budget constraints.
+                    </p>
                 </div>
                 <div class="card">
-                    <h3 style="margin-bottom: 12px; color: var(--text-primary); font-size: 1.25rem;">Fast Turnaround</h3>
-                    <p>Campus proximity means easier communication and faster delivery times for critical assignments.</p>
+                    <h3 style="margin-bottom: 12px; color: var(--text-primary); font-size: 1.25rem;">Fast Turnaround
+                    </h3>
+                    <p>Campus proximity means easier communication and faster delivery times for critical assignments.
+                    </p>
                 </div>
             </div>
         </section>
@@ -74,7 +101,7 @@
     <div class="modal-overlay" id="authModal">
         <div class="auth-card" id="authCardBox">
             <button class="close-btn" id="closeModalBtn">✕</button>
-            
+
             <div class="tab-group">
                 <button class="tab active" id="tab-login">Log in</button>
                 <button class="tab" id="tab-signup">Sign up</button>
@@ -117,9 +144,23 @@
                 <div id="socialGroup">
                     <div class="divider" id="socialDivider">or continue with</div>
                     <div class="social-group">
-                        <button class="btn-social" id="googleBtn" disabled>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                            Google Login
+                        <button class="btn-social" id="googleBtn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                                    fill="#4285F4" />
+                                <path
+                                    d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                                    fill="#34A853" />
+                                <path
+                                    d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                                    fill="#FBBC05" />
+                                <path
+                                    d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                                    fill="#EA4335" />
+                            </svg>
+                            Login with Google
                         </button>
                     </div>
                 </div>
@@ -131,4 +172,5 @@
     <!-- Firebase Logic (ES6 Module) -->
     <script type="module" src="js/auth.js"></script>
 </body>
+
 </html>

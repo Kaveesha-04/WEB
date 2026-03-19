@@ -8,6 +8,12 @@
     grid-template-columns: 280px 1fr;
     gap: 32px;
     padding: 40px 0;
+    align-items: start;
+}
+
+.dashboard-grid aside {
+    position: sticky;
+    top: 100px;
 }
 
 .dashboard-sidebar .avatar {
@@ -22,6 +28,36 @@
     font-size: 2rem;
     font-weight: 700;
     margin: 0 auto 16px;
+}
+
+/* =========================================
+   Dashboard Welcome Banner
+========================================= */
+.welcome-banner {
+    background: linear-gradient(135deg, var(--accent) 0%, #312e81 100%);
+    border-radius: var(--radius-lg);
+    padding: 32px 40px;
+    margin-bottom: 32px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-banner::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 30%;
+    background: radial-gradient(circle at top right, rgba(255,255,255,0.1) 0%, transparent 60%);
+}
+
+.welcome-banner-content {
+    position: relative;
+    z-index: 2;
 }
 
 /* =========================================
@@ -42,6 +78,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    animation: slideUpFade 0.4s ease-out forwards;
 }
 
 .gig-card:hover {

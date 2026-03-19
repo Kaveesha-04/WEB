@@ -1,17 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marketplace | UniGig</title>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/auth.css">
 </head>
-<body style="background: var(--bg-base);">
+
+<body style="background: var(--bg-base); display: none;">
 
     <header class="main-nav">
         <div class="container nav-container">
-            <div class="logo">UNI<span>GIG</span></div>
+                <a href="index.html" class="logo" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                    <div style="width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent) 0%, #a855f7 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(79, 70, 229, 0.4);">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <span style="color: var(--text-primary); line-height: 1; font-size: 1.5rem;">Uni<span style="background: linear-gradient(135deg, var(--accent) 0%, #a855f7 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Gig</span></span>
+                </a>
             <div class="nav-links">
                 <button class="btn btn-accent" id="postGigBtn">Post a Task</button>
                 <a href="profile.html" class="btn btn-outline" id="profileBtn">Profile</a>
@@ -20,30 +32,72 @@
         </div>
     </header>
 
-    <main class="container workspace-grid">
+    <main class="container dashboard-grid">
 
         <aside>
             <div class="card" style="text-align: center;">
-                <div class="avatar">
+                <div class="avatar" id="dashboardAvatar" style="position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; background: var(--bg-hover);">
+                    <img id="dashboardUserImage" src="" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top:0; left:0; display: none;">
                     <span id="userInitial">U</span>
                 </div>
                 <h3 id="userDisplayName" style="margin-bottom: 4px; font-size: 1.125rem;">Loading...</h3>
                 <p id="userEmailDisplay" style="font-size: 0.85rem; margin-bottom: 24px;">...</p>
-                
-                <div style="border-top: 1px solid var(--border-subtle); padding-top: 16px; display: flex; justify-content: space-between;">
+
+                <div
+                    style="border-top: 1px solid var(--border-subtle); padding-top: 16px; display: flex; justify-content: space-between;">
                     <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-primary);">Active Tasks</span>
-                    <span style="font-size: 0.85rem; font-weight: 600; color: var(--accent);">0</span>
+                    <span id="activeGigCountDashboard" style="font-size: 0.85rem; font-weight: 600; color: var(--accent);">0</span>
                 </div>
+            </div>
+
+            <div class="card" style="margin-top: 24px;">
+                <h3 style="font-size: 1.1rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 12px; margin-bottom: 16px;">Top Ranked Freelancers</h3>
+                <div id="leaderboardFeed" style="display: flex; flex-direction: column; gap: 12px;">
+                    <span style="font-size: 0.9rem; color: var(--text-muted);">Loading Rankings...</span>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 24px;">
+                <h3
+                    style="font-size: 1.1rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 12px; margin-bottom: 16px;">
+                    Tips for Success</h3>
+                <ul
+                    style="list-style: none; padding: 0; margin: 0; font-size: 0.9rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 12px;">
+                    <li style="display: flex; gap: 8px;">
+                        <span style="color: var(--accent);">✦</span>
+                        <span>Write detailed task descriptions to stand out to clients.</span>
+                    </li>
+                    <li style="display: flex; gap: 8px;">
+                        <span style="color: var(--accent);">✦</span>
+                        <span>Respond to campus inquiries within 2 hours to boost your ranking.</span>
+                    </li>
+                    <li style="display: flex; gap: 8px;">
+                        <span style="color: var(--accent);">✦</span>
+                        <span>Deliver your projects on time to secure consecutive 5-star ratings.</span>
+                    </li>
+                </ul>
             </div>
         </aside>
 
         <section>
-            <div class="card-header" style="margin-bottom: 24px;">
+            <div class="welcome-banner">
+                <div class="welcome-banner-content">
+                    <h1 style="font-size: 1.75rem; margin-bottom: 8px;">Find the perfect freelance services</h1>
+                    <p style="color: rgba(255,255,255,0.8); font-size: 1rem;">Work with the best student talent on
+                        campus.</p>
+                </div>
+                <button class="btn btn-primary" id="postGigBannerBtn"
+                    style="background: white; color: var(--accent); border: none; font-weight: 600; padding: 0 24px; height: 48px; border-radius: var(--radius-sm); box-shadow: var(--shadow-sm); z-index: 2; cursor: pointer;">Post
+                    a Task</button>
+            </div>
+
+            <div style="margin-bottom: 24px;">
                 <h2 style="font-size: 1.5rem;">Recent Opportunities</h2>
             </div>
 
             <div id="gigFeed" class="gig-grid">
-                <div class="card" style="grid-column: 1 / -1; text-align: center; color: var(--text-muted); padding: 40px;">
+                <div class="card"
+                    style="grid-column: 1 / -1; text-align: center; color: var(--text-muted); padding: 40px;">
                     <p>Loading the marketplace data...</p>
                 </div>
             </div>
@@ -58,16 +112,22 @@
                 <h2 style="font-size: 1.5rem;">Post a Task</h2>
                 <button class="close-btn" id="closePostModalBtn">✕</button>
             </div>
-            
+
             <form id="postGigForm">
                 <div class="form-group">
                     <label>Task Title</label>
-                    <input type="text" id="gigTitle" placeholder="I will build a full-stack website..." required>
+                    <input type="text" id="gigTitle" placeholder="A full-stack website" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Cover Image (Optional)</label>
+                    <input type="file" id="gigImage" accept="image/png, image/jpeg, image/jpg" style="width: 100%; padding: 8px 0;">
                 </div>
 
                 <div class="form-group">
                     <label>Category</label>
-                    <select id="gigCategory" required style="width: 100%; height: 44px; padding: 0 16px; background: #ffffff; border: 1px solid var(--border-focus); border-radius: var(--radius-sm); font-size: 0.95rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s; margin-bottom: 20px;">
+                    <select id="gigCategory" required
+                        style="width: 100%; height: 44px; padding: 0 16px; background: #ffffff; border: 1px solid var(--border-focus); border-radius: var(--radius-sm); font-size: 0.95rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s; margin-bottom: 20px;">
                         <option value="" disabled selected>Select a category</option>
                         <option value="Website Dev">Website Dev</option>
                         <option value="Data Analytics">Data Analytics</option>
@@ -78,7 +138,8 @@
 
                 <div class="form-group">
                     <label>Description</label>
-                    <textarea id="gigDescription" placeholder="Describe the service you are offering..." rows="4" required></textarea>
+                    <textarea id="gigDescription" placeholder="Describe the service you are offering..." rows="4"
+                        required></textarea>
                 </div>
 
                 <div class="form-group">
@@ -86,11 +147,13 @@
                     <input type="number" id="gigPrice" placeholder="e.g. 5000" min="0" required>
                 </div>
 
-                <button type="submit" class="btn btn-accent" id="submitGigBtn" style="width: 100%; margin-top: 8px;">Publish Gig</button>
+                <button type="submit" class="btn btn-accent" id="submitGigBtn"
+                    style="width: 100%; margin-top: 8px;">Publish Gig</button>
             </form>
         </div>
     </div>
 
     <script type="module" src="js/board.js"></script>
 </body>
+
 </html>
