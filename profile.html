@@ -18,47 +18,70 @@
         </div>
     </header>
 
-    <main class="container" style="padding-top: 40px; padding-bottom: 80px;">
+<main class="container" style="padding-top: 20px; padding-bottom: 80px;">
         
-        <section class="profile-header-card">
-            <div class="avatar-large" id="profileAvatar"></div>
-            <div class="profile-info" style="flex: 1;">
-                <h1 id="profileName">Loading...</h1>
-                <p id="profileEmail">...</p>
-                
-                <div class="profile-stats">
-                    <div class="stat-box">
-                        <span id="statActiveGigs">0</span>
-                        <label>Active Gigs</label>
+        <div class="profile-hero-card">
+            <div class="profile-cover"></div>
+            
+            <div class="profile-hero-content">
+                <div class="profile-main-info">
+                    <div class="avatar-large" id="profileAvatar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                     </div>
-                    <div class="stat-box">
-                        <span id="statCompleted">0</span>
-                        <label>Completed</label>
+                    <div class="profile-text">
+                        <h1 id="profileName">Loading...</h1>
+                        <p class="profile-tagline" id="profileMajor">University Major</p>
+                        <p id="profileEmail" style="font-size: 0.875rem;">...</p>
                     </div>
                 </div>
 
-                <div style="display: flex; gap: 12px;">
+                <div class="profile-actions">
                     <button class="btn btn-accent" id="editProfileBtn">Edit Profile</button>
-                    <button class="btn btn-outline" id="settingsBtn">Settings</button>
+                    <button class="btn btn-outline" id="settingsBtn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    </button>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section class="activity-section">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 16px; margin-bottom: 24px;">
-                <h2>My Posted Gigs</h2>
-                <button class="btn btn-primary btn-sm" id="postNewGigBtn">+ Create New</button>
-            </div>
+        <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 32px; margin-top: 32px;">
+            
+            <div class="profile-side-column">
+                <div class="auth-card" style="transform: none; padding: 24px; margin-bottom: 24px;">
+                    <h3 style="margin-bottom: 12px; font-size: 1.1rem;">About Me</h3>
+                    <p id="profileBio" style="color: var(--text-muted); line-height: 1.6;">
+                        This user hasn't written a bio yet.
+                    </p>
+                </div>
 
-            <div id="myGigsGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px;">
-                <div class="auth-card" style="transform: none; width: 100%; max-width: 100%; padding: 24px; text-align: center; color: var(--text-muted);">
-                    You haven't posted any gigs yet.
+                <div class="auth-card" style="transform: none; padding: 24px;">
+                    <h3 style="margin-bottom: 16px; font-size: 1.1rem;">Marketplace Stats</h3>
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border-subtle); padding-bottom: 12px; margin-bottom: 12px;">
+                        <span style="color: var(--text-muted);">Active Gigs</span>
+                        <span style="font-weight: bold; color: var(--text-primary);">0</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <span style="color: var(--text-muted);">Completed</span>
+                        <span style="font-weight: bold; color: var(--text-primary);">0</span>
+                    </div>
                 </div>
             </div>
-        </section>
 
+            <div class="profile-main-column">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                    <h2>My Posted Gigs</h2>
+                    <button class="btn btn-primary btn-sm" id="postNewGigBtn">+ Post New Gig</button>
+                </div>
+
+                <div id="myGigsGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+                    <div class="auth-card" style="transform: none; width: 100%; padding: 40px 24px; text-align: center; color: var(--text-muted); border: 1px dashed var(--border-subtle); background: transparent;">
+                        You haven't posted any gigs yet.
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
-
+    
     <div class="modal-overlay" id="editProfileModal">
         <div class="auth-card" onclick="event.stopPropagation()">
             <h2 style="margin-bottom: 24px;">Edit Profile</h2>
