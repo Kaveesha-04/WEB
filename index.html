@@ -8,25 +8,87 @@
 </head>
 <body>
 
-    <header>
-        <div class="container" style="display: flex; width: 100%; justify-content: space-between; align-items: center;">
+    <header class="main-nav">
+        <div class="container nav-container">
             <div class="logo">UNI<span>GIG</span></div>
-            <div style="display: flex; gap: 12px;">
+            
+            <div class="nav-links">
+                <a href="#" class="nav-link hidden-mobile">Explore</a>
+                <a href="#" class="nav-link hidden-mobile" style="color: var(--accent); font-weight: 500;">Become a Freelancer</a>
+                <div class="nav-divider hidden-mobile"></div>
                 <button class="btn btn-outline" onclick="openModal('login')">Log in</button>
                 <button class="btn btn-primary" onclick="openModal('signup')">Sign up</button>
             </div>
         </div>
     </header>
 
-    <main class="container">
-        <section class="hero">
-            <div class="badge animate-up">Version 1.0</div>
-            <h1 class="animate-up delay-1">The campus <br><span>freelance network.</span></h1>
-            <p class="subtitle animate-up delay-2">Monetize your skills, outsource your minor tasks, and build your portfolio within the university community.</p>
-            
-            <div class="animate-up delay-3" style="display: flex; gap: 16px;">
-                <button class="btn btn-primary" onclick="openModal('signup')">Start exploring</button>
-                <a href="https://github.com/Kaveesha-04/WEB" target="_blank" class="btn btn-outline">View documentation</a>
+    <main>
+        <section class="hero-section container">
+            <div class="hero-grid">
+                
+                <div class="hero-content animate-up">
+                    <div class="badge" style="margin-bottom: 24px; display: inline-block;">UniGig Beta 1.0</div>
+                    <h1 class="hero-title">Find the perfect campus talent for your project.</h1>
+                    
+                    <div class="hero-search-box">
+                        <input type="text" placeholder="What service are you looking for today?">
+                        <button class="btn btn-accent search-btn">Search</button>
+                    </div>
+
+                    <div class="popular-categories">
+                        <span style="color: var(--text-muted); font-size: 0.9rem; font-weight: 500;">Popular:</span>
+                        <span class="category-pill">Web Development</span>
+                        <span class="category-pill">Hardware / IoT</span>
+                        <span class="category-pill">Cybersecurity</span>
+                        <span class="category-pill">Tutoring</span>
+                    </div>
+                </div>
+
+                <div class="hero-visual animate-up delay-1">
+                    <div class="abstract-graphic">
+                        <div class="floating-card card-1">
+                            <div class="card-avatar"></div>
+                            <div class="card-lines">
+                                <div class="line" style="width: 80%;"></div>
+                                <div class="line" style="width: 40%;"></div>
+                            </div>
+                        </div>
+                        <div class="floating-card card-2">
+                            <div class="card-avatar"></div>
+                            <div class="card-lines">
+                                <div class="line" style="width: 60%;"></div>
+                                <div class="line" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="value-strip">
+            <div class="container value-grid">
+                <div class="value-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                    <div>
+                        <h3>Verified Students</h3>
+                        <p>Trusted campus connections.</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+                    <div>
+                        <h3>Student Budgets</h3>
+                        <p>Affordable, quality work.</p>
+                    </div>
+                </div>
+                <div class="value-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    <div>
+                        <h3>Quick Turnaround</h3>
+                        <p>Ready before midterms.</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
