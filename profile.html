@@ -55,7 +55,7 @@
         <section>
             <div class="card-header">
                 <h2 style="font-size: 1.5rem;">My Workflow</h2>
-                <button class="btn btn-accent" id="postNewGigBtn">Create New Task</button>
+                <button class="btn btn-accent" id="postGigBtn">Create New Task</button>
             </div>
 
             <div id="myGigsGrid" class="gig-grid" style="display: grid; gap: 16px;">
@@ -67,6 +67,46 @@
         </section>
 
     </main>
+
+    <!-- Post a Task Modal -->
+    <div class="modal-overlay" id="postGigModal">
+        <div class="auth-card" style="max-width: 500px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                <h2 style="font-size: 1.5rem;">Post a Task</h2>
+                <button class="close-btn" id="closePostModalBtn">✕</button>
+            </div>
+            
+            <form id="postGigForm">
+                <div class="form-group">
+                    <label>Task Title</label>
+                    <input type="text" id="gigTitle" placeholder="I will build a full-stack website..." required>
+                </div>
+
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="gigCategory" required style="width: 100%; height: 44px; padding: 0 16px; background: #ffffff; border: 1px solid var(--border-focus); border-radius: var(--radius-sm); font-size: 0.95rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s; margin-bottom: 20px;">
+                        <option value="" disabled selected>Select a category</option>
+                        <option value="Website Dev">Website Dev</option>
+                        <option value="Data Analytics">Data Analytics</option>
+                        <option value="Tutoring">Tutoring</option>
+                        <option value="UI/UX Design">UI/UX Design</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="gigDescription" placeholder="Describe the service you are offering..." rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Price (LKR)</label>
+                    <input type="number" id="gigPrice" placeholder="e.g. 5000" min="0" required>
+                </div>
+
+                <button type="submit" class="btn btn-accent" id="submitGigBtn" style="width: 100%; margin-top: 8px;">Publish Gig</button>
+            </form>
+        </div>
+    </div>
 
     <!-- Modal for Editing Profile -->
     <div class="modal-overlay" id="editProfileModal">
@@ -98,5 +138,6 @@
     <!-- Need to include guard if there is one -->
     <script type="module" src="js/profile.js"></script>
     <script type="module" src="js/auth.js"></script>
+    <script type="module" src="js/board.js"></script>
 </body>
 </html>

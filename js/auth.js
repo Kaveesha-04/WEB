@@ -7,7 +7,7 @@ import {
     GoogleAuthProvider,
     signInWithPopup,
     sendPasswordResetEmail
-} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
 // ==========================================
 // 0. UI MODAL TOGGLES
