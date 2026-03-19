@@ -1,9 +1,9 @@
 // js/auth.js
 import { auth } from './firebase-config.js';
-import { 
-    createUserWithEmailAndPassword, 
+import {
+    createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    updateProfile, 
+    updateProfile,
     GoogleAuthProvider,
     signInWithPopup,
     sendPasswordResetEmail
@@ -18,8 +18,8 @@ googleProvider.setCustomParameters({ prompt: 'select_account' });
 
 if (googleBtn) {
     googleBtn.addEventListener('click', (e) => {
-        e.preventDefault(); 
-        
+        e.preventDefault();
+
         googleBtn.innerHTML = "Opening Google...";
         googleBtn.disabled = true;
 
@@ -30,12 +30,12 @@ if (googleBtn) {
             })
             .catch((error) => {
                 console.error("Google Sign-In Error:", error);
-                
+
                 // Friendly error translation
                 if (error.code !== 'auth/popup-closed-by-user') {
                     alert("Google Sign-In failed. Please try again.");
                 }
-                
+
                 googleBtn.innerHTML = `<img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google"> Continue with Google`;
                 googleBtn.disabled = false;
             });
@@ -68,7 +68,7 @@ if (authForm) {
         const currentMode = authForm.getAttribute('data-mode');
         const submitBtn = document.getElementById('submitBtn');
         const originalText = submitBtn.textContent;
-        
+
         submitBtn.textContent = 'Processing...';
         submitBtn.disabled = true; // Prevent double-clicking
 
@@ -88,7 +88,7 @@ if (authForm) {
                     return updateProfile(userCredential.user, { displayName: fullName });
                 })
                 .then(() => {
-                    window.location.href = "dashboard.html"; 
+                    window.location.href = "dashboard.html";
                 })
                 .catch((error) => {
                     handleAuthError(error.code);
@@ -99,7 +99,7 @@ if (authForm) {
             // Execute Firebase Log In
             signInWithEmailAndPassword(auth, email, password)
                 .then(() => {
-                    window.location.href = "dashboard.html"; 
+                    window.location.href = "dashboard.html";
                 })
                 .catch((error) => {
                     handleAuthError(error.code);
@@ -140,10 +140,10 @@ if (forgotPasswordBtn) {
 const togglePasswordBtns = document.querySelectorAll('.toggle-password');
 
 togglePasswordBtns.forEach(btn => {
-    btn.addEventListener('click', function() {
+    btn.addEventListener('click', function () {
         const targetId = this.getAttribute('data-target');
         const inputField = document.getElementById(targetId);
-        
+
         if (inputField.type === "password") {
             inputField.type = "text";
             this.classList.add('active');

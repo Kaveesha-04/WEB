@@ -1,83 +1,118 @@
 // js/profile.js
 import { auth, db } from './firebase-config.js';
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-import { doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
-// UI Elements
+// DOM Elements - Display
+const profileMajor = document.getElementById('profileMajor');
+const profileBio = document.getElementById('profileBio');
+const skillsContainer = document.getElementById('skillsContainer');
+
+// DOM Elements - Modal
 const editProfileBtn = document.getElementById('editProfileBtn');
 const editProfileModal = document.getElementById('editProfileModal');
-const cancelEditBtn = document.getElementById('cancelEditBtn');
+const closeEditModalBtn = document.getElementById('closeEditModalBtn');
 const saveProfileBtn = document.getElementById('saveProfileBtn');
 
+// DOM Elements - Inputs
 const majorInput = document.getElementById('majorInput');
 const bioInput = document.getElementById('bioInput');
+const skillsInput = document.getElementById('skillsInput');
 
-// We will store the user's UID here once they are verified
 let currentUserUid = null;
 
-// 1. OPEN / CLOSE MODAL LOGIC
-if (editProfileBtn) {
-    editProfileBtn.addEventListener('click', () => editProfileModal.classList.add('active'));
-}
-if (cancelEditBtn) {
-    cancelEditBtn.addEventListener('click', () => editProfileModal.classList.remove('active'));
-}
+// 1. MODAL CONTROLS
+if (editProfileBtn) editProfileBtn.addEventListener('click', () => editProfileModal.classList.add('active'));
+if (closeEditModalBtn) closeEditModalBtn.addEventListener('click', () => editProfileModal.classList.remove('active'));
 
-// 2. THE FIREBASE CONNECTION
+// 2. FETCH USER DATA ON LOAD
 onAuthStateChanged(auth, async (user) => {
     if (user) {
-        currentUserUid = user.uid; // Lock in their secure ID
-        
-        // --- THE READER ---
-        // Look inside the "users" collection for a document named with their UID
-        const userDocRef = doc(db, "users", currentUserUid);
-        const docSnap = await getDoc(userDocRef);
+        currentUserUid = user.uid;
 
-        if (docSnap.exists()) {
-            const userData = docSnap.data();
-            console.log("Found existing profile data!");
-            
-            // If we had a place in profile.html to show these, we'd inject them here.
-            // For now, let's pre-fill the edit inputs so they don't have to retype it
-            if (userData.major) majorInput.value = userData.major;
-            if (userData.bio) bioInput.value = userData.bio;
-        } else {
-            console.log("No custom profile data found yet. They are a new user.");
+        try {
+            const userDocRef = doc(db, "users", currentUserUid);
+            const docSnap = await getDoc(userDocRef);
+
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+
+                // Populate the UI with saved data
+                if (data.major) {
+                    profileMajor.textContent = data.major;
+                    majorInput.value = data.major;
+                }
+                if (data.bio) {
+                    profileBio.textContent = data.bio;
+                    bioInput.value = data.bio;
+                }
+
+                // Populate Skills
+                if (data.skills && Array.isArray(data.skills) && data.skills.length > 0) {
+                    skillsInput.value = data.skills.join(', ');
+                    skillsContainer.innerHTML = '';
+
+                    data.skills.forEach(skill => {
+                        const span = document.createElement('span');
+                        span.className = 'skill-pill';
+                        span.textContent = skill;
+                        skillsContainer.appendChild(span);
+                    });
+                }
+            }
+        } catch (error) {
+            console.error("Error fetching profile:", error);
         }
     }
 });
 
-// 3. THE WRITER
+// 3. SAVE DATA TO FIRESTORE
 if (saveProfileBtn) {
     saveProfileBtn.addEventListener('click', async () => {
-        if (!currentUserUid) return; // Security check
-        
+        if (!currentUserUid) return;
+
         const originalText = saveProfileBtn.textContent;
         saveProfileBtn.textContent = "Saving...";
+        saveProfileBtn.disabled = true;
 
-        const newMajor = majorInput.value;
-        const newBio = bioInput.value;
+        // Clean up the skills input into an array
+        const rawSkills = skillsInput.value;
+        const skillsArray = rawSkills.split(',').map(s => s.trim()).filter(s => s !== '');
 
         try {
-            // Point directly to their specific UID folder in the "users" collection
             const userDocRef = doc(db, "users", currentUserUid);
-            
-            // setDoc will create the folder if it doesn't exist, or overwrite it if it does.
-            // { merge: true } ensures we don't accidentally delete other data they might have
+
             await setDoc(userDocRef, {
-                major: newMajor,
-                bio: newBio,
+                major: majorInput.value,
+                bio: bioInput.value,
+                skills: skillsArray,
                 updatedAt: new Date()
             }, { merge: true });
 
-            alert("Profile successfully updated!");
+            // Update the UI immediately 
+            profileMajor.textContent = majorInput.value || "Student";
+            profileBio.textContent = bioInput.value || "This user hasn't written a bio yet.";
+
+            skillsContainer.innerHTML = '';
+            if (skillsArray.length > 0) {
+                skillsArray.forEach(skill => {
+                    const span = document.createElement('span');
+                    span.className = 'skill-pill';
+                    span.textContent = skill;
+                    skillsContainer.appendChild(span);
+                });
+            } else {
+                skillsContainer.innerHTML = '<span style="color: var(--text-muted); font-size: 0.8rem;">No skills added yet.</span>';
+            }
+
             editProfileModal.classList.remove('active');
-            saveProfileBtn.textContent = originalText;
-            
+
         } catch (error) {
             console.error("Error saving profile:", error);
-            alert("Failed to save profile. Check the console.");
+            alert("Failed to save changes.");
+        } finally {
             saveProfileBtn.textContent = originalText;
+            saveProfileBtn.disabled = false;
         }
     });
 }

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | UniGig</title>
     <link rel="stylesheet" href="css/global.css">
 </head>
+
 <body>
 
     <header>
@@ -13,21 +15,24 @@
             <div class="logo">UNI<span>GIG</span></div>
             <div style="display: flex; gap: 16px; align-items: center;">
                 <button class="btn btn-accent" id="postGigBtn">Post a Gig</button>
-                
+
                 <a href="profile.html" class="btn btn-outline" id="profileBtn">Profile</a>
-                
+
                 <button class="btn btn-outline" id="logoutBtn">Log Out</button>
             </div>
         </div>
     </header>
 
     <main class="container" style="display: grid; grid-template-columns: 250px 1fr; gap: 32px; padding-top: 40px;">
-        
+
         <aside class="profile-sidebar">
             <div class="auth-card" style="transform: none; padding: 24px; text-align: center;">
-                <div style="width: 80px; height: 80px; border-radius: 50%; background: var(--border-subtle); margin: 0 auto 16px;"></div>
+                <div
+                    style="width: 80px; height: 80px; border-radius: 50%; background: var(--border-subtle); margin: 0 auto 16px;">
+                </div>
                 <h3 id="userDisplayName" style="margin-bottom: 8px;">Loading...</h3>
-                <p id="userEmailDisplay" style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 16px;">...</p>
+                <p id="userEmailDisplay" style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 16px;">...
+                </p>
                 <div class="divider"></div>
                 <p style="font-size: 0.875rem; color: var(--text-muted);">0 Active Gigs</p>
             </div>
@@ -35,9 +40,10 @@
 
         <section class="feed-section">
             <h2 style="margin-bottom: 24px;">Recent Opportunities</h2>
-            
+
             <div id="gigFeed" style="display: flex; flex-direction: column; gap: 16px;">
-                <div class="auth-card" style="transform: none; width: 100%; max-width: 100%; padding: 24px; text-align: center; color: var(--text-muted);">
+                <div class="auth-card"
+                    style="transform: none; width: 100%; max-width: 100%; padding: 24px; text-align: center; color: var(--text-muted);">
                     Loading the marketplace...
                 </div>
             </div>
@@ -48,4 +54,5 @@
     <script type="module" src="js/dashboard.js"></script>
     <script type="module" src="js/board.js"></script>
 </body>
+
 </html>

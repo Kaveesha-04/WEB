@@ -1,103 +1,117 @@
-.profile-hero-card {
-    background: var(--surface);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    /* Keeps the banner rounded */
-    margin-bottom: 24px;
+/* PROFILE-SPECIFIC WORKSPACE CSS */
+.workspace-grid {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 32px;
+    align-items: start;
 }
 
-.profile-cover {
-    height: 160px;
-    width: 100%;
-    /* A subtle gradient that looks great in dark mode */
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(17, 24, 39, 1) 100%);
-    border-bottom: 1px solid var(--border-subtle);
+/* Sidebar Styles */
+.workspace-sidebar {
+    position: sticky;
+    top: 100px;
 }
 
-.profile-hero-content {
-    padding: 0 32px 32px 32px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-top: -60px;
-    /* Pulls the content up over the banner */
-}
-
-.profile-main-info {
-    display: flex;
-    align-items: flex-end;
-    gap: 24px;
-}
-
-.avatar-large {
-    width: 130px;
-    height: 130px;
+.avatar-standard {
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    background: var(--surface);
-    border: 4px solid var(--bg-base);
+    background: var(--bg-base);
+    border: 2px solid var(--border-subtle);
+    margin: 0 auto 16px auto;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text-muted);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    flex-shrink: 0;
     overflow: hidden;
 }
 
-.avatar-large svg {
-    width: 60px;
-    height: 60px;
+.avatar-standard svg {
+    width: 48px;
+    height: 48px;
 }
 
-.profile-text {
-    padding-bottom: 8px;
-}
-
-.profile-text h1 {
-    font-size: 2.2rem;
-    margin-bottom: 4px;
-    line-height: 1.1;
-}
-
-.profile-tagline {
-    color: var(--accent);
-    font-weight: 500;
-    margin-bottom: 4px;
-}
-
-.profile-actions {
+.sidebar-stats {
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 16px;
     display: flex;
+    flex-direction: column;
     gap: 12px;
-    padding-bottom: 8px;
 }
 
-/* Responsive stack for smaller screens */
-@media (max-width: 768px) {
-    .profile-hero-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        margin-top: -65px;
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.sidebar-section h3 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.skill-pill {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-subtle);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Main Content Styles */
+.showcase-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.gig-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 24px;
+}
+
+.new-gig-placeholder {
+    border: 2px dashed var(--border-subtle);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.new-gig-placeholder:hover {
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.placeholder-content p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    padding: 0 20px;
+}
+
+@media (max-width: 900px) {
+    .workspace-grid {
+        grid-template-columns: 1fr;
     }
 
-    .profile-main-info {
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-        margin-bottom: 24px;
-    }
-
-    .profile-text {
-        padding-bottom: 0;
-    }
-
-    .profile-actions {
-        width: 100%;
-        justify-content: center;
-    }
-
-    div[style*="grid-template-columns: 1fr 2fr"] {
-        grid-template-columns: 1fr !important;
+    .workspace-sidebar {
+        position: static;
     }
 }

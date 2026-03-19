@@ -10,11 +10,11 @@ onAuthStateChanged(auth, (user) => {
     } else {
         // UNIQUE INTERFACE: They are allowed in. Let's populate their specific data.
         console.log("Secure connection established for:", user.email);
-        
+
         // Find the UI elements on whatever page they are currently on
         const nameDisplay = document.getElementById('userDisplayName') || document.getElementById('profileName');
         const emailDisplay = document.getElementById('userEmailDisplay') || document.getElementById('profileEmail');
-        
+
         // Inject their unique Google profile data into the HTML
         if (nameDisplay) nameDisplay.textContent = user.displayName || "New Student";
         if (emailDisplay) emailDisplay.textContent = user.email;
