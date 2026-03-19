@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UniGig | Student Marketplace</title>
+    <title>UniGig | Professional Freelance Network</title>
     <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/auth.css">
 </head>
-
 <body>
 
     <header class="main-nav">
@@ -15,226 +14,121 @@
             <div class="logo">UNI<span>GIG</span></div>
 
             <div class="nav-links">
-                <a href="#" class="nav-link hidden-mobile" onclick="openModal('login'); return false;">Explore</a>
-                <a href="#" class="nav-link hidden-mobile" style="color: var(--accent); font-weight: 500;"
-                    onclick="openModal('signup'); return false;">Become a Freelancer</a>
-                <div class="nav-divider hidden-mobile"></div>
-                <button class="btn btn-outline" onclick="openModal('login')">Log in</button>
-                <button class="btn btn-primary" onclick="openModal('signup')">Sign up</button>
+                <a href="#" class="nav-link" id="navExploreBtn">Explore Services</a>
+                <button class="btn btn-outline" id="navLoginBtn">Log in</button>
+                <button class="btn btn-primary" id="navSignupBtn">Sign up</button>
             </div>
         </div>
     </header>
 
     <main>
-        <section class="hero-section container">
-            <div class="hero-grid">
-
-                <div class="hero-content animate-up">
-                    <div class="badge" style="margin-bottom: 24px; display: inline-block;">UniGig Beta 1.0</div>
-                    <h1 class="hero-title">Find the perfect campus talent for your project.</h1>
+        <section class="hero-section">
+            <div class="container hero-grid">
+                
+                <div class="hero-content">
+                    <h1>Hire talented UOM students for your next project.</h1>
+                    <p>Connect with vetted freelancers on campus. From software engineering to graphic design, find the talent you need.</p>
 
                     <div class="hero-search-box">
-                        <input type="text" placeholder="What service are you looking for today?">
+                        <input type="text" placeholder="What service are you looking for?">
                         <button class="btn btn-accent search-btn" onclick="openModal('signup')">Search</button>
                     </div>
 
-                    <div class="popular-categories">
-                        <span style="color: var(--text-muted); font-size: 0.9rem; font-weight: 500;">Popular:</span>
-                        <span class="category-pill" onclick="openModal('signup')">Web Development</span>
-                        <span class="category-pill" onclick="openModal('signup')">Hardware / IoT</span>
-                        <span class="category-pill" onclick="openModal('signup')">Cybersecurity</span>
-                        <span class="category-pill" onclick="openModal('signup')">Tutoring</span>
+                    <div>
+                        <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-right: 8px;">Popular:</span>
+                        <span class="category-pill" class="pillSignupTrigger">Website Dev</span>
+                        <span class="category-pill" class="pillSignupTrigger">Data Analytics</span>
+                        <span class="category-pill" class="pillSignupTrigger">Tutoring</span>
+                        <span class="category-pill" class="pillSignupTrigger">UI/UX Design</span>
                     </div>
                 </div>
 
-                <div class="hero-visual animate-up delay-1">
-                    <div class="abstract-graphic">
-                        <div class="floating-card card-1">
-                            <div class="card-avatar"></div>
-                            <div class="card-lines">
-                                <div class="line" style="width: 80%;"></div>
-                                <div class="line" style="width: 40%;"></div>
-                            </div>
-                        </div>
-                        <div class="floating-card card-2">
-                            <div class="card-avatar"></div>
-                            <div class="card-lines">
-                                <div class="line" style="width: 60%;"></div>
-                                <div class="line" style="width: 90%;"></div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="hero-image-wrapper">
+                    <!-- High quality professional unslpash image of workspace -->
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Students collaborating">
                 </div>
 
             </div>
         </section>
 
-        <section class="value-strip">
-            <div class="container value-grid">
-                <div class="value-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                    </svg>
-                    <div>
-                        <h3>Verified Students</h3>
-                        <p>Trusted campus connections.</p>
-                    </div>
+        <!-- Value Proposition Section -->
+        <section style="padding: 80px 0; background: var(--bg-base);">
+            <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+                <div class="card">
+                    <h3 style="margin-bottom: 12px; color: var(--text-primary); font-size: 1.25rem;">Quality Work</h3>
+                    <p>Every freelancer uses a verified University of Moratuwa email address, ensuring quality and accountability.</p>
                 </div>
-                <div class="value-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
-                        <rect x="2" y="5" width="20" height="14" rx="2" ry="2"></rect>
-                        <line x1="2" y1="10" x2="22" y2="10"></line>
-                    </svg>
-                    <div>
-                        <h3>Student Budgets</h3>
-                        <p>Affordable, quality work.</p>
-                    </div>
+                <div class="card">
+                    <h3 style="margin-bottom: 12px; color: var(--text-primary); font-size: 1.25rem;">Student Budgets</h3>
+                    <p>Fair pricing that respects both the talent's time and the student client's budget constraints.</p>
                 </div>
-                <div class="value-item">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
-                    </svg>
-                    <div>
-                        <h3>Quick Turnaround</h3>
-                        <p>Ready before midterms.</p>
-                    </div>
+                <div class="card">
+                    <h3 style="margin-bottom: 12px; color: var(--text-primary); font-size: 1.25rem;">Fast Turnaround</h3>
+                    <p>Campus proximity means easier communication and faster delivery times for critical assignments.</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Authentication Modal Overlay -->
-    <div class="modal-overlay" id="authModal" onclick="closeModal(event)">
-        <div class="auth-card" onclick="event.stopPropagation()">
-            <button class="close-btn" onclick="closeModal()" aria-label="Close">&times;</button>
+    <!-- Authentication Modal Overlay (Required IDs maintained for JS) -->
+    <div class="modal-overlay" id="authModal">
+        <div class="auth-card" id="authCardBox">
+            <button class="close-btn" id="closeModalBtn">✕</button>
+            
             <div class="tab-group">
-                <button class="tab active" id="tab-login" onclick="switchTab('login')">Log in</button>
-                <button class="tab" id="tab-signup" onclick="switchTab('signup')">Sign up</button>
+                <button class="tab active" id="tab-login">Log in</button>
+                <button class="tab" id="tab-signup">Sign up</button>
             </div>
-
-            <div class="social-group" id="socialGroup">
-                <button class="btn btn-social" id="googleBtn" disabled>
-                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google">
-                    Continue with Google
-                </button>
-                <button class="btn btn-social" id="appleBtn" disabled>
-                    <img src="https://www.svgrepo.com/show/511330/apple-173.svg" alt="Apple" style="filter: invert(1);">
-                    Continue with Apple
-                </button>
-            </div>
-
-            <div class="divider" id="socialDivider">or continue with email</div>
 
             <!-- The data-mode attribute is key here! -->
             <form id="authForm" data-mode="login">
 
                 <div class="form-group signup-only">
                     <label>Full Name</label>
-                    <input type="text" id="fullName" placeholder="Display name for your profile">
+                    <input type="text" id="fullName" placeholder="e.g. John Doe">
                 </div>
 
                 <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" id="email" placeholder="name@gmail.com" required>
+                    <label>University Email</label>
+                    <input type="email" id="email" placeholder="name@uom.lk" required>
                 </div>
 
                 <div class="form-group">
-                    <div
-                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                        <label style="margin-bottom: 0;">Password</label>
-                        <a href="#" id="forgotPasswordBtn" class="login-only forgot-link">Forgot?</a>
-                    </div>
+                    <label>Password</label>
                     <div class="password-wrapper">
                         <input type="password" id="password" placeholder="••••••••" required>
-                        <button type="button" class="toggle-password" data-target="password">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>
-                        </button>
+                        <button type="button" class="toggle-password" data-target="password">Show</button>
                     </div>
+                    <a href="#" id="forgotPasswordBtn" class="login-only forgot-link">Forgot password?</a>
                 </div>
 
                 <div class="form-group signup-only">
                     <label>Confirm Password</label>
                     <div class="password-wrapper">
                         <input type="password" id="confirmPassword" placeholder="••••••••">
-                        <button type="button" class="toggle-password" data-target="confirmPassword">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                <circle cx="12" cy="12" r="3"></circle>
-                            </svg>
+                        <button type="button" class="toggle-password" data-target="confirmPassword">Show</button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-accent" id="submitBtn" style="width: 100%; margin-top: 8px;">
+                    Log in
+                </button>
+
+                <div id="socialGroup">
+                    <div class="divider" id="socialDivider">or continue with</div>
+                    <div class="social-group">
+                        <button class="btn-social" id="googleBtn" disabled>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                            Google Login
                         </button>
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-accent" id="submitBtn" style="width: 100%;">
-                    Log in to UniGig
-                </button>
             </form>
         </div>
     </div>
 
-    <!-- UI Logic for the Modal -->
-    <script>
-        const modal = document.getElementById('authModal');
-        const loginTab = document.getElementById('tab-login');
-        const signupTab = document.getElementById('tab-signup');
-        const submitBtn = document.getElementById('submitBtn');
-        const authForm = document.getElementById('authForm');
-
-        function openModal(mode) {
-            modal.classList.add('active');
-            switchTab(mode);
-        }
-
-        function closeModal(event) {
-            if (!event || event.target === modal) {
-                modal.classList.remove('active');
-            }
-        }
-
-        function switchTab(mode) {
-            const fullNameInput = document.getElementById('fullName');
-            const confirmPwdInput = document.getElementById('confirmPassword');
-
-            // Grab the new social elements
-            const socialGroup = document.getElementById('socialGroup');
-            const socialDivider = document.getElementById('socialDivider');
-
-            if (mode === 'login') {
-                loginTab.classList.add('active');
-                signupTab.classList.remove('active');
-                submitBtn.textContent = 'Log in to UniGig';
-
-                fullNameInput.removeAttribute('required');
-                confirmPwdInput.removeAttribute('required');
-
-                // SHOW the social buttons
-                socialGroup.style.display = 'flex';
-                socialDivider.style.display = 'flex';
-            } else {
-                loginTab.classList.remove('active');
-                signupTab.classList.add('active');
-                submitBtn.textContent = 'Create account';
-
-                fullNameInput.setAttribute('required', 'true');
-                confirmPwdInput.setAttribute('required', 'true');
-
-                // HIDE the social buttons to keep the card clean
-                socialGroup.style.display = 'none';
-                socialDivider.style.display = 'none';
-            }
-
-            authForm.setAttribute('data-mode', mode);
-        }
-    </script>
-
     <!-- Firebase Logic (ES6 Module) -->
     <script type="module" src="js/auth.js"></script>
 </body>
-
 </html>

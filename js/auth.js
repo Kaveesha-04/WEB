@@ -10,6 +10,70 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
 // ==========================================
+// 0. UI MODAL TOGGLES
+// ==========================================
+const modal = document.getElementById('authModal');
+const loginTab = document.getElementById('tab-login');
+const signupTab = document.getElementById('tab-signup');
+const submitBtn = document.getElementById('submitBtn');
+const authForm = document.getElementById('authForm');
+const socialGroup = document.getElementById('socialGroup');
+const navExploreBtn = document.getElementById('navExploreBtn');
+const navLoginBtn = document.getElementById('navLoginBtn');
+const navSignupBtn = document.getElementById('navSignupBtn');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const authCardBox = document.getElementById('authCardBox');
+const pillSignupTriggers = document.querySelectorAll('.pillSignupTrigger');
+
+function openModal(mode) {
+    if(modal) modal.classList.add('active');
+    switchTab(mode);
+}
+
+function closeModal(event) {
+    if (!event || event.target === modal || event.target === closeModalBtn) {
+        if(modal) modal.classList.remove('active');
+    }
+}
+
+function switchTab(mode) {
+    if (!authForm) return;
+
+    const fullNameInput = document.getElementById('fullName');
+    const confirmPwdInput = document.getElementById('confirmPassword');
+
+    if (mode === 'login') {
+        if(loginTab) { loginTab.classList.add('active'); signupTab.classList.remove('active'); }
+        if(submitBtn) submitBtn.textContent = 'Log in';
+        if(fullNameInput) fullNameInput.removeAttribute('required');
+        if(confirmPwdInput) confirmPwdInput.removeAttribute('required');
+        if(socialGroup) socialGroup.style.display = 'flex';
+    } else {
+        if(loginTab) { loginTab.classList.remove('active'); signupTab.classList.add('active'); }
+        if(submitBtn) submitBtn.textContent = 'Create account';
+        if(fullNameInput) fullNameInput.setAttribute('required', 'true');
+        if(confirmPwdInput) confirmPwdInput.setAttribute('required', 'true');
+        if(socialGroup) socialGroup.style.display = 'none';
+    }
+
+    authForm.setAttribute('data-mode', mode);
+}
+
+// Bind Events
+if(navExploreBtn) navExploreBtn.addEventListener('click', (e) => { e.preventDefault(); openModal('login'); });
+if(navLoginBtn) navLoginBtn.addEventListener('click', () => openModal('login'));
+if(navSignupBtn) navSignupBtn.addEventListener('click', () => openModal('signup'));
+if(closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+if(modal) modal.addEventListener('click', closeModal);
+if(authCardBox) authCardBox.addEventListener('click', (e) => e.stopPropagation());
+if(loginTab) loginTab.addEventListener('click', () => switchTab('login'));
+if(signupTab) signupTab.addEventListener('click', () => switchTab('signup'));
+
+pillSignupTriggers.forEach(pill => {
+    pill.addEventListener('click', () => openModal('signup'));
+});
+
+// ==========================================
 // 1. GOOGLE SIGN-IN LOGIC
 // ==========================================
 const googleBtn = document.getElementById('googleBtn');
@@ -57,7 +121,7 @@ if (appleBtn) {
 // ==========================================
 // 3. EMAIL & PASSWORD LOGIC
 // ==========================================
-const authForm = document.getElementById('authForm');
+// authForm already defined at top of file
 
 if (authForm) {
     authForm.addEventListener('submit', (e) => {

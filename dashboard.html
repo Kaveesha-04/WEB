@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | UniGig</title>
+    <title>Marketplace | UniGig</title>
     <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/dashboard.css">
 </head>
+<body style="background: var(--bg-base);">
 
-<body>
-
-    <header>
-        <div class="container" style="display: flex; width: 100%; justify-content: space-between; align-items: center;">
+    <header class="main-nav">
+        <div class="container nav-container">
             <div class="logo">UNI<span>GIG</span></div>
-            <div style="display: flex; gap: 16px; align-items: center;">
-                <button class="btn btn-accent" id="postGigBtn">Post a Gig</button>
-
+            <div class="nav-links">
+                <button class="btn btn-accent" id="postGigBtn">Post a Task</button>
                 <a href="profile.html" class="btn btn-outline" id="profileBtn">Profile</a>
-
-                <button class="btn btn-outline" id="logoutBtn">Log Out</button>
+                <button class="btn btn-danger" id="logoutBtn">Log Out</button>
             </div>
         </div>
     </header>
 
-    <main class="container" style="display: grid; grid-template-columns: 250px 1fr; gap: 32px; padding-top: 40px;">
+    <main class="container workspace-grid">
 
-        <aside class="profile-sidebar">
-            <div class="auth-card" style="transform: none; padding: 24px; text-align: center;">
-                <div
-                    style="width: 80px; height: 80px; border-radius: 50%; background: var(--border-subtle); margin: 0 auto 16px;">
+        <aside>
+            <div class="card" style="text-align: center;">
+                <div class="avatar">
+                    <span id="userInitial">U</span>
                 </div>
-                <h3 id="userDisplayName" style="margin-bottom: 8px;">Loading...</h3>
-                <p id="userEmailDisplay" style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 16px;">...
-                </p>
-                <div class="divider"></div>
-                <p style="font-size: 0.875rem; color: var(--text-muted);">0 Active Gigs</p>
+                <h3 id="userDisplayName" style="margin-bottom: 4px; font-size: 1.125rem;">Loading...</h3>
+                <p id="userEmailDisplay" style="font-size: 0.85rem; margin-bottom: 24px;">...</p>
+                
+                <div style="border-top: 1px solid var(--border-subtle); padding-top: 16px; display: flex; justify-content: space-between;">
+                    <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-primary);">Active Tasks</span>
+                    <span style="font-size: 0.85rem; font-weight: 600; color: var(--accent);">0</span>
+                </div>
             </div>
         </aside>
 
-        <section class="feed-section">
-            <h2 style="margin-bottom: 24px;">Recent Opportunities</h2>
+        <section>
+            <div class="card-header" style="margin-bottom: 24px;">
+                <h2 style="font-size: 1.5rem;">Recent Opportunities</h2>
+            </div>
 
             <div id="gigFeed" style="display: flex; flex-direction: column; gap: 16px;">
-                <div class="auth-card"
-                    style="transform: none; width: 100%; max-width: 100%; padding: 24px; text-align: center; color: var(--text-muted);">
-                    Loading the marketplace...
+                <div class="card" style="text-align: center; color: var(--text-muted); padding: 40px;">
+                    <p>Loading the marketplace data...</p>
                 </div>
             </div>
         </section>
@@ -54,5 +54,4 @@
     <script type="module" src="js/dashboard.js"></script>
     <script type="module" src="js/board.js"></script>
 </body>
-
 </html>
