@@ -1,5 +1,5 @@
 import { auth, db } from './firebase-config.js';
-import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { onAuthStateChanged, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 import { doc, getDoc, setDoc, updateDoc, query, collection, where, getDocs, deleteDoc, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 // DOM Elements - Display
@@ -26,6 +26,7 @@ const ratingWorkerName = document.getElementById('ratingWorkerName');
 const submitRatingBtn = document.getElementById('submitRatingBtn');
 
 // DOM Elements - Inputs
+const nameInput = document.getElementById('nameInput');
 const majorInput = document.getElementById('majorInput');
 const bioInput = document.getElementById('bioInput');
 const skillsInput = document.getElementById('skillsInput');
@@ -91,7 +92,9 @@ onAuthStateChanged(auth, async (user) => {
                     if (data.rating) {
                         ratingHTML = `<span style="font-size: 0.9rem; font-weight: 500; color: #f59e0b; margin-left: 8px;">★ ${data.rating.toFixed(1)} (${data.reviewCount || 0})</span>`;
                     }
-                    nameHeader.innerHTML = `${user.displayName || "Freelancer"} ${ratingHTML}`;
+                    nameHeader.innerHTML = `${data.name || user.displayName || "Freelancer"} ${ratingHTML}`;
+                    
+                    if (nameInput) nameInput.value = data.name || user.displayName || "Freelancer";
                 }
 
                 // Populate the UI with saved data
@@ -129,6 +132,7 @@ onAuthStateChanged(auth, async (user) => {
                 const nameHeader = document.getElementById('profileName');
                 if (nameHeader) nameHeader.textContent = user.displayName || "Freelancer";
                 profileMajor.textContent = "Add your degree";
+                if (nameInput) nameInput.value = user.displayName || "Freelancer";
             }
         } catch (error) {
             console.error("Error fetching profile:", error);
@@ -548,8 +552,17 @@ if (saveProfileBtn) {
             }
 
             const userDocRef = doc(db, "users", currentUserUid);
+            
+            let newName = auth.currentUser ? auth.currentUser.displayName : "A Student";
+            if (nameInput && nameInput.value.trim() !== "") {
+                newName = nameInput.value.trim();
+                if (auth.currentUser) {
+                    await updateProfile(auth.currentUser, { displayName: newName }).catch(e => console.error(e));
+                }
+            }
+
             const updatePayload = {
-                name: auth.currentUser ? auth.currentUser.displayName : "A Student",
+                name: newName,
                 major: majorInput.value,
                 bio: bioInput.value,
                 skills: skillsArray,
@@ -560,6 +573,15 @@ if (saveProfileBtn) {
             }
 
             await setDoc(userDocRef, updatePayload, { merge: true });
+
+            const nameHeader = document.getElementById('profileName');
+            if (nameHeader) {
+                let ratingHTML = "";
+                if (nameHeader.innerHTML.includes('<span')) {
+                    ratingHTML = " " + nameHeader.innerHTML.substring(nameHeader.innerHTML.indexOf('<span'));
+                }
+                nameHeader.innerHTML = `${newName}${ratingHTML}`;
+            }
 
             profileMajor.textContent = majorInput.value || "Add your degree";
             profileBio.textContent = bioInput.value || "No bio added yet. Click edit profile to tell the campus about your expertise.";
