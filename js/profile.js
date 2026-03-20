@@ -217,6 +217,7 @@ async function fetchMyGigs(uid) {
             const card = document.createElement('div');
             card.style.background = "#ffffff";
             card.style.border = "1px solid var(--border-subtle)";
+            card.style.borderLeft = gig.status === 'completed' ? "4px solid #22c55e" : (gig.status === 'ongoing' ? "4px solid #3b82f6" : "4px solid #64748b");
             card.style.borderRadius = "var(--radius-md)";
             card.style.marginBottom = "16px";
             card.style.display = "flex";
