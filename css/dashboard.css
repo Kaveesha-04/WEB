@@ -172,3 +172,32 @@
     font-weight: 700;
     color: var(--text-primary);
 }
+
+/* =========================================
+   MEDIA QUERIES
+========================================= */
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-grid aside {
+        position: static;
+    }
+
+    .welcome-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px 16px;
+        gap: 20px;
+    }
+
+    .welcome-banner::after {
+        width: 100%;
+        background: radial-gradient(circle at top center, rgba(255,255,255,0.1) 0%, transparent 60%);
+    }
+
+    .gig-grid {
+        grid-template-columns: 1fr;
+    }
+}

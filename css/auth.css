@@ -241,3 +241,22 @@ form[data-mode="login"] .signup-only { display: none; }
 .btn-social:hover {
     background: #f8fafc;
 }
+
+/* =========================================
+   MEDIA QUERIES
+========================================= */
+@media (max-width: 768px) {
+    .workspace-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .workspace-grid aside {
+        position: static;
+    }
+
+    .auth-card {
+        padding: 24px 16px;
+        width: calc(100% - 32px);
+        margin: 0 auto;
+    }
+}

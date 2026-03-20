@@ -329,8 +329,75 @@ p {
     .hero-content p {
         margin: 0 auto 32px;
     }
+}
 
-    .workspace-grid {
-        grid-template-columns: 1fr;
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        height: auto;
+        padding: 16px 0;
+        gap: 16px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-section {
+        padding: 40px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .hero-search-box {
+        flex-direction: column;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        gap: 12px;
+    }
+
+    .hero-search-box input {
+        background: #ffffff;
+        border: 1px solid var(--border-focus);
+        border-radius: var(--radius-sm);
+        height: 48px;
+        width: 100%;
+        padding: 0 16px;
+    }
+
+    .hero-search-box .search-btn {
+        width: 100%;
+        height: 48px;
+    }
+
+    .category-pill {
+        display: block;
+        margin-right: 0;
+        text-align: center;
+    }
+
+    #popularSearchesContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+    
+    #popularSearchesContainer span:first-child {
+        margin-right: 0;
+        margin-bottom: 4px;
     }
 }
