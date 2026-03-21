@@ -449,7 +449,7 @@ async function fetchAcceptedGigs(uid) {
                             <span style="font-weight: 700; color: var(--text-primary); font-size: 1.1rem;">Rs. ${gig.price}</span>
                         </div>
                         <div style="display: flex; gap: 12px;">
-                            <a href="mailto:${gig.authorEmail || ''}?subject=Regarding your task: ${encodeURIComponent(gig.title)}" class="btn btn-outline" style="padding: 8px 24px; font-size: 0.9rem; height: auto;">Email Client</a>
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=${gig.authorEmail || ''}&su=Regarding%20your%20task:%20${encodeURIComponent(gig.title)}" target="_blank" class="btn btn-outline" style="padding: 8px 24px; font-size: 0.9rem; height: auto;">Email Client</a>
                         </div>
                     </div>
                 </div>
@@ -500,7 +500,7 @@ async function fetchNotifications(uid) {
                     Task: <strong>${notif.gigTitle}</strong>
                 </p>
                 <div style="margin-top: 8px;">
-                    <a href="mailto:${notif.senderEmail}?subject=Re: ${encodeURIComponent(notif.gigTitle)}" class="btn btn-outline" style="font-size: 0.8rem; padding: 4px 12px; height: auto;">Email ${notif.senderName}</a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=${notif.senderEmail}&su=Re:%20${encodeURIComponent(notif.gigTitle)}" target="_blank" class="btn btn-outline" style="font-size: 0.8rem; padding: 4px 12px; height: auto;">Email ${notif.senderName}</a>
                 </div>
             `;
             feed.appendChild(div);
