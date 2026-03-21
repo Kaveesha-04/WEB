@@ -1,7 +1,4 @@
-/* =========================================
-   CSS for Dashboard Feed Layout
-   Depends on variables set in global.css
-========================================= */
+/* dashboard layout */
 
 .dashboard-grid {
     display: grid;
@@ -30,9 +27,7 @@
     margin: 0 auto 16px;
 }
 
-/* =========================================
-   Dashboard Welcome Banner
-========================================= */
+/* welcome banner */
 .welcome-banner {
     background: var(--accent);
     border-radius: var(--radius-md);
@@ -67,9 +62,7 @@
     background: var(--bg-base);
 }
 
-/* =========================================
-   Fiverr-Style Gig Cards
-========================================= */
+/* gig cards */
 .gig-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -173,9 +166,7 @@
     color: var(--text-primary);
 }
 
-/* =========================================
-   MEDIA QUERIES
-========================================= */
+/* media queries */
 @media (max-width: 768px) {
     .dashboard-grid {
         grid-template-columns: 1fr;

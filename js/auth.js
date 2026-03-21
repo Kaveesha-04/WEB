@@ -14,9 +14,7 @@ import {
 // Force Session Persistence
 setPersistence(auth, browserSessionPersistence).catch(e => console.error("Persistence Error:", e));
 
-// ==========================================
-// 0. UI MODAL TOGGLES
-// ==========================================
+// ui modal toggles
 const modal = document.getElementById('authModal');
 const loginTab = document.getElementById('tab-login');
 const signupTab = document.getElementById('tab-signup');
@@ -121,9 +119,7 @@ if (heroSearchBtn) {
 // Call initially
 renderPopularSearches();
 
-// ==========================================
-// 1. GOOGLE SIGN-IN LOGIC
-// ==========================================
+// google sign-in
 const googleBtn = document.getElementById('googleBtn');
 const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: 'select_account' });
@@ -154,9 +150,7 @@ if (googleBtn) {
     });
 }
 
-// ==========================================
-// 2. APPLE SIGN-IN LOGIC (Placeholder)
-// ==========================================
+// apple sign-in (todo: needs dev account)
 const appleBtn = document.getElementById('appleBtn');
 
 if (appleBtn) {
@@ -166,9 +160,7 @@ if (appleBtn) {
     });
 }
 
-// ==========================================
-// 3. EMAIL & PASSWORD LOGIC
-// ==========================================
+// email/auth login
 // authForm already defined at top of file
 
 if (authForm) {
@@ -221,9 +213,7 @@ if (authForm) {
     });
 }
 
-// ==========================================
-// 4. FORGOT PASSWORD LOGIC
-// ==========================================
+// forgot password
 const forgotPasswordBtn = document.getElementById('forgotPasswordBtn');
 
 if (forgotPasswordBtn) {
@@ -246,9 +236,7 @@ if (forgotPasswordBtn) {
     });
 }
 
-// ==========================================
-// 5. SHOW/HIDE PASSWORD LOGIC
-// ==========================================
+// show/hide pwd toggle
 const togglePasswordBtns = document.querySelectorAll('.toggle-password');
 
 togglePasswordBtns.forEach(btn => {
@@ -268,9 +256,7 @@ togglePasswordBtns.forEach(btn => {
     });
 });
 
-// ==========================================
-// UTILITY FUNCTIONS (Error Handling & UI)
-// ==========================================
+// utils
 function resetButton(btnElement, originalText) {
     btnElement.textContent = originalText;
     btnElement.disabled = false;

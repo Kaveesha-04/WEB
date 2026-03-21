@@ -1,9 +1,6 @@
-/* =========================================
-   CSS for Profile Page & Authentication Modals 
-   Depends on variables set in global.css
-========================================= */
+/* profile & auth modals */
 
-/* --- Profile Page Workspace Layout --- */
+/* profile layout */
 .workspace-grid {
     display: grid;
     grid-template-columns: 280px 1fr;
@@ -31,7 +28,7 @@
     margin: 0 auto 16px;
 }
 
-/* --- Authentication & Form Modals --- */
+/* auth modals */
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -236,9 +233,7 @@ form[data-mode="login"] .signup-only { display: none; }
     background: #f8fafc;
 }
 
-/* =========================================
-   MEDIA QUERIES
-========================================= */
+/* media queries */
 @media (max-width: 768px) {
     .workspace-grid {
         grid-template-columns: 1fr;

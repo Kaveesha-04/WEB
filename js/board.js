@@ -4,9 +4,7 @@ import { collection, addDoc, getDocs, serverTimestamp, query, orderBy, doc, upda
 
 let currentUser = null;
 
-// ==========================================
-// 1. SECURITY & SESSION GUARD
-// ==========================================
+// auth state observer
 onAuthStateChanged(auth, async (user) => {
     if (!user) {
         window.location.replace("index.html");
@@ -25,12 +23,12 @@ onAuthStateChanged(auth, async (user) => {
             userInitial.textContent = user.displayName.charAt(0).toUpperCase();
         }
 
-        // Load custom profile picture into Dashboard Sidebar Header
+        // check for profile pic
         try {
             const { getDoc, setDoc, serverTimestamp } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
             const userDocRef = doc(db, "users", user.uid);
 
-            // Proactively initialize the user's document so the 5-Star Rating engine can target it later
+            // init user doc
             await setDoc(userDocRef, {
                 name: user.displayName || "Freelancer",
                 email: user.email,
@@ -50,15 +48,12 @@ onAuthStateChanged(auth, async (user) => {
             console.error("Dashboard avatar injection failed:", e);
         }
 
-        // Fetch gigs after user is verified
-        fetchAndRenderGigs();
+        // init feeds
         fetchLeaderboard();
     }
 });
 
-// ==========================================
-// 2. GLOBAL LOGOUT
-// ==========================================
+// handle logout
 const logoutBtn = document.getElementById('logoutBtn');
 if (logoutBtn) {
     logoutBtn.addEventListener('click', () => {
@@ -66,9 +61,7 @@ if (logoutBtn) {
     });
 }
 
-// ==========================================
-// 3. GIG DETAILS MODAL INJECTION
-// ==========================================
+// gig details modal
 function injectGigDetailsModal() {
     if (document.getElementById('gigDetailsModal')) return;
     
@@ -177,9 +170,7 @@ window.openGigDetails = function(gig, imageUrl, initial, isOwner) {
     document.getElementById('gigDetailsModal').classList.add('active');
 };
 
-// ==========================================
-// 3. POST A GIG MODAL CONTROLS
-// ==========================================
+// post gig modal setup
 const postGigBtn = document.getElementById('postGigBtn');
 const postGigBannerBtn = document.getElementById('postGigBannerBtn');
 const postGigModal = document.getElementById('postGigModal');
@@ -204,9 +195,7 @@ if (postGigModal) {
     });
 }
 
-// ==========================================
-// 4. POST GIG TO FIRESTORE
-// ==========================================
+// submit new gig
 const postGigForm = document.getElementById('postGigForm');
 const submitGigBtn = document.getElementById('submitGigBtn');
 
@@ -270,9 +259,7 @@ if (postGigForm) {
     });
 }
 
-// ==========================================
-// 5. FETCH & RENDER GIGS (MARKETPLACE)
-// ==========================================
+// marketplace feed
 const gigFeed = document.getElementById('gigFeed');
 
 const categoryImages = {
@@ -383,9 +370,7 @@ async function fetchAndRenderGigs() {
     }
 }
 
-// ==========================================
-// 6. FETCH LEADERBOARD WIDGET
-// ==========================================
+// leaderboard widget
 async function fetchLeaderboard() {
     const feed = document.getElementById('leaderboardFeed');
     if (!feed) return;

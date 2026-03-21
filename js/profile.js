@@ -2,20 +2,20 @@ import { auth, db } from './firebase-config.js';
 import { onAuthStateChanged, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 import { doc, getDoc, setDoc, updateDoc, query, collection, where, getDocs, deleteDoc, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-// DOM Elements - Display
+// ui elements - display
 const profileMajor = document.getElementById('profileMajor');
 const profileBio = document.getElementById('profileBio');
 const skillsContainer = document.getElementById('skillsContainer');
 const myGigsGrid = document.getElementById('myGigsGrid');
 const myAcceptedGigsGrid = document.getElementById('myAcceptedGigsGrid');
 
-// DOM Elements - Modal
+// modal elements
 const editProfileBtn = document.getElementById('editProfileBtn');
 const editProfileModal = document.getElementById('editProfileModal');
 const closeEditModalBtn = document.getElementById('closeEditModalBtn');
 const saveProfileBtn = document.getElementById('saveProfileBtn');
 
-// DOM Elements - Rating Modal
+// rating modal elements
 const ratingModal = document.getElementById('ratingModal');
 const closeRatingModalBtn = document.getElementById('closeRatingModalBtn');
 const starContainer = document.getElementById('starContainer');
@@ -25,7 +25,7 @@ const ratingWorkerIdInput = document.getElementById('ratingWorkerId');
 const ratingWorkerName = document.getElementById('ratingWorkerName');
 const submitRatingBtn = document.getElementById('submitRatingBtn');
 
-// DOM Elements - Inputs
+// input fields
 const nameInput = document.getElementById('nameInput');
 const majorInput = document.getElementById('majorInput');
 const bioInput = document.getElementById('bioInput');
@@ -34,9 +34,7 @@ const profileImageInput = document.getElementById('profileImageInput');
 
 let currentUserUid = null;
 
-// ==========================================
-// 1. MODAL CONTROLS
-// ==========================================
+// modal controls
 if (editProfileBtn) editProfileBtn.addEventListener('click', () => editProfileModal.classList.add('active'));
 if (closeEditModalBtn) closeEditModalBtn.addEventListener('click', () => editProfileModal.classList.remove('active'));
 
@@ -59,9 +57,7 @@ if (starContainer) {
     });
 }
 
-// ==========================================
-// 1.5 GLOBAL LOGOUT
-// ==========================================
+// handle logout
 const logoutBtn = document.getElementById('logoutBtn');
 if (logoutBtn) {
     logoutBtn.addEventListener('click', () => {
@@ -69,9 +65,7 @@ if (logoutBtn) {
     });
 }
 
-// ==========================================
-// 2. FETCH USER DATA ON LOAD
-// ==========================================
+// fetch user initial data
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         document.body.style.display = 'block';
@@ -153,9 +147,7 @@ const categoryImages = {
     "UI/UX Design": "https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&q=80"
 };
 
-// ==========================================
-// 3. FETCH POSTED TASKS (MY WORKFLOW)
-// ==========================================
+// get user's posted tasks
 async function fetchMyGigs(uid) {
     if (!myGigsGrid) return;
     myGigsGrid.innerHTML = '<div class="card" style="text-align: center; color: var(--text-muted); padding: 40px;">Loading your tasks...</div>';
@@ -308,9 +300,7 @@ async function fetchMyGigs(uid) {
     }
 }
 
-// ==========================================
-// 4. SUBMIT RATING LOGIC
-// ==========================================
+// submit rating
 if (submitRatingBtn) {
     submitRatingBtn.addEventListener('click', async () => {
         const gigId = ratingGigIdInput.value;
@@ -362,9 +352,7 @@ if (submitRatingBtn) {
     });
 }
 
-// ==========================================
-// 5. FETCH ACCEPTED TASKS LOGIC (Tasks user is fulfilling)
-// ==========================================
+// get tasks user is working on
 async function fetchAcceptedGigs(uid) {
     const grid = myAcceptedGigsGrid;
     if (!grid) return;
@@ -475,9 +463,7 @@ async function fetchAcceptedGigs(uid) {
     }
 }
 
-// ==========================================
-// 6. FETCH INBOX NOTIFICATIONS
-// ==========================================
+// fetch inbox notifs
 async function fetchNotifications(uid) {
     const feed = document.getElementById('notificationsFeed');
     if (!feed) return;
@@ -525,9 +511,7 @@ async function fetchNotifications(uid) {
     }
 }
 
-// ==========================================
-// 7. SAVE USER DATA TO FIRESTORE
-// ==========================================
+// save profile data
 if (saveProfileBtn) {
     saveProfileBtn.addEventListener('click', async () => {
         if (!currentUserUid) return;
