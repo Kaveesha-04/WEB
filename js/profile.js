@@ -1,6 +1,6 @@
 import { auth, db } from './firebase-config.js';
 import { onAuthStateChanged, signOut, updateProfile } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-import { doc, getDoc, setDoc, updateDoc, query, collection, where, getDocs, deleteDoc, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { doc, getDoc, setDoc, updateDoc, query, collection, where, getDocs, deleteDoc, orderBy, serverTimestamp, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 // ui elements - display
 const profileMajor = document.getElementById('profileMajor');
@@ -14,6 +14,13 @@ const editProfileBtn = document.getElementById('editProfileBtn');
 const editProfileModal = document.getElementById('editProfileModal');
 const closeEditModalBtn = document.getElementById('closeEditModalBtn');
 const saveProfileBtn = document.getElementById('saveProfileBtn');
+
+// "post a task" modal elements
+const postGigBtn = document.getElementById('postGigBtn');
+const postGigModal = document.getElementById('postGigModal');
+const closePostModalBtn = document.getElementById('closePostModalBtn');
+const postGigForm = document.getElementById('postGigForm');
+const submitGigBtn = document.getElementById('submitGigBtn');
 
 // rating modal elements
 const ratingModal = document.getElementById('ratingModal');
@@ -37,6 +44,18 @@ let currentUserUid = null;
 // modal controls
 if (editProfileBtn) editProfileBtn.addEventListener('click', () => editProfileModal.classList.add('active'));
 if (closeEditModalBtn) closeEditModalBtn.addEventListener('click', () => editProfileModal.classList.remove('active'));
+
+if (postGigBtn && postGigModal) {
+    postGigBtn.addEventListener('click', () => postGigModal.classList.add('active'));
+}
+if (closePostModalBtn && postGigModal) {
+    closePostModalBtn.addEventListener('click', () => postGigModal.classList.remove('active'));
+}
+if (postGigModal) {
+    postGigModal.addEventListener('click', (e) => {
+        if (e.target === postGigModal) postGigModal.classList.remove('active');
+    });
+}
 
 if (closeRatingModalBtn) closeRatingModalBtn.addEventListener('click', () => ratingModal.classList.remove('active'));
 
@@ -511,6 +530,66 @@ async function fetchNotifications(uid) {
     }
 }
 
+// submit new gig
+if (postGigForm) {
+    postGigForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!currentUserUid) return;
+
+        const originalText = submitGigBtn.textContent;
+        submitGigBtn.textContent = 'Publishing...';
+        submitGigBtn.disabled = true;
+
+        const title = document.getElementById('gigTitle').value;
+        const category = document.getElementById('gigCategory').value;
+        const description = document.getElementById('gigDescription').value;
+        const price = document.getElementById('gigPrice').value;
+        const fileInput = document.getElementById('gigImage');
+        
+        let imageBase64 = null;
+        if (fileInput && fileInput.files.length > 0) {
+            const file = fileInput.files[0];
+            try {
+                imageBase64 = await new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => resolve(reader.result);
+                    reader.onerror = reject;
+                    reader.readAsDataURL(file);
+                });
+            } catch (err) {
+                console.error("Image read error:", err);
+            }
+        }
+
+        try {
+            await addDoc(collection(db, "gigs"), {
+                title: title,
+                category: category,
+                description: description,
+                price: Number(price),
+                authorId: currentUserUid,
+                authorName: auth.currentUser ? auth.currentUser.displayName : "Unknown Student",
+                authorEmail: auth.currentUser ? auth.currentUser.email : "",
+                status: "open",
+                image: imageBase64,
+                createdAt: serverTimestamp()
+            });
+
+            postGigForm.reset();
+            postGigModal.classList.remove('active');
+            
+            // Refresh feed
+            fetchMyGigs(currentUserUid);
+            
+        } catch (error) {
+            console.error("Error posting gig:", error);
+            alert("Failed to post gig. Check console for details.");
+        } finally {
+            submitGigBtn.textContent = originalText;
+            submitGigBtn.disabled = false;
+        }
+    });
+}
 // save profile data
 if (saveProfileBtn) {
     saveProfileBtn.addEventListener('click', async () => {
