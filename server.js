@@ -46,10 +46,26 @@ app.post('/api/contact', (req, res) => {
     }
 });
 
-// --- FUNCTION 3: Generate Downloadable Report ---
-app.get('/api/download-report', (req, res) => {
+// --- FUNCTION 3: Generate Downloadable Report (from Real Data) ---
+app.post('/api/download-report', (req, res) => {
     try {
-        const reportContent = `UniGig Activity Report\n=====================\nGenerated on: ${new Date().toLocaleString()}\nStatus: Active Account\nTotal Gigs Completed: 12\nEarnings: LKR 45,000\n`;
+        const userData = req.body;
+        
+        let reportContent = `UniGig Activity Report\n=====================\n`;
+        reportContent += `Generated on: ${new Date().toLocaleString()}\n`;
+        reportContent += `User: ${userData.name || 'Unknown'}\n`;
+        reportContent += `Email: ${userData.email || 'N/A'}\n\n`;
+        reportContent += `Total Tasks Posted: ${userData.gigsCount || 0}\n`;
+        reportContent += `Lifetime Value: Rs. ${userData.totalValue || 0}\n\n`;
+        
+        if (userData.gigs && userData.gigs.length > 0) {
+            reportContent += `--- Your Tasks ---\n`;
+            userData.gigs.forEach((g, i) => {
+                reportContent += `${i+1}. [${g.status.toUpperCase()}] ${g.title} (Rs. ${g.price})\n`;
+            });
+        } else {
+            reportContent += `No tasks posted yet.\n`;
+        }
         
         const reportPath = path.join(logDir, 'temp_report.txt');
         fs.writeFileSync(reportPath, reportContent);
@@ -62,7 +78,7 @@ app.get('/api/download-report', (req, res) => {
         }); 
     } catch (error) {
         console.error("Error generating report:", error);
-        res.status(500).send("Report generation failed.");
+        res.status(500).json({ success: false, message: "Report generation failed." });
     }
 });
 
