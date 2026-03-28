@@ -122,7 +122,7 @@ async function fetchStats() {
 
 function setupContactForm(contactBtn) {
     const defaultModalHTML = `
-        <div class="modal-overlay" id="contactSupportModal" style="display: none; align-items: center; justify-content: center; z-index: 9999;">
+        <div class="modal-overlay" id="contactSupportModal" style="z-index: 9999;">
             <div class="auth-card" style="max-width: 400px; padding: 2rem;">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-xl font-bold">Contact Support</h2>
@@ -155,18 +155,18 @@ function setupContactForm(contactBtn) {
     const statusMsg = document.getElementById('contactStatusMessage');
 
     contactBtn.addEventListener('click', () => {
-        modal.style.display = 'flex';
+        modal.classList.add('active');
         statusMsg.style.display = 'none';
         form.reset();
     });
 
     closeBtn.addEventListener('click', () => {
-        modal.style.display = 'none';
+        modal.classList.remove('active');
     });
 
     // Close on clicking outside
     modal.addEventListener('click', (e) => {
-        if (e.target === modal) modal.style.display = 'none';
+        if (e.target === modal) modal.classList.remove('active');
     });
 
     form.addEventListener('submit', async (e) => {
@@ -193,7 +193,7 @@ function setupContactForm(contactBtn) {
                 statusMsg.style.color = 'var(--accent)';
                 statusMsg.textContent = result.message;
                 form.reset();
-                setTimeout(() => { modal.style.display = 'none'; }, 2000);
+                setTimeout(() => { modal.classList.remove('active'); }, 2000);
             } else {
                 statusMsg.style.color = 'var(--danger)';
                 statusMsg.textContent = result.message || 'Error sending message.';
