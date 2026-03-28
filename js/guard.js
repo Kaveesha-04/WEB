@@ -1,6 +1,7 @@
 import { auth, db } from './firebase-config.js';
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-import { collection, addDoc, getDocs, serverTimestamp, query, orderBy, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { collection, addDoc, getDocs, query, orderBy, doc, updateDoc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 let currentUser = null;
 
@@ -25,7 +26,6 @@ onAuthStateChanged(auth, async (user) => {
 
         // check for profile pic
         try {
-            const { getDoc, setDoc, serverTimestamp } = await import("https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js");
             const userDocRef = doc(db, "users", user.uid);
 
             // init user doc
@@ -50,6 +50,9 @@ onAuthStateChanged(auth, async (user) => {
 
         // init feeds
         fetchLeaderboard();
+        if (document.getElementById('gigFeed')) {
+            fetchAndRenderGigs();
+        }
     }
 });
 

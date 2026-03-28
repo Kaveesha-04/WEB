@@ -99,7 +99,8 @@ async function fetchStats() {
         
         // Fetch Real Live Data from Firebase!
         const usersSnap = await getCountFromServer(collection(db, "users"));
-        const gigsSnap = await getCountFromServer(collection(db, "gigs"));
+        const gigsQuery = query(collection(db, "gigs"), where("status", "==", "completed"));
+        const gigsSnap = await getCountFromServer(gigsQuery);
         
         if (activeUsersEl) activeUsersEl.textContent = usersSnap.data().count;
         if (gigsCompletedEl) gigsCompletedEl.textContent = gigsSnap.data().count;
