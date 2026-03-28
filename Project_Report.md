@@ -29,10 +29,10 @@ UniGig employs a standard three-tier architecture tailored for modern web applic
 ## 3. Core Feature Implementation
 
 ### 3.1 Secure User Authentication & Identity
-Authentication is handled strictly through the `auth.js` module. Users are required to provide a valid `.lk` or university-tied email address. Passwords are never stored on our servers; they are securely hashed and managed by Google's Firebase Authentication servers, ensuring compliance with modern security standards.
+Authentication is handled strictly through the `auth.js` module. Standard email and password registration is supported alongside Google OAuth integration. Passwords are never stored on our servers; they are securely hashed and managed by Google's Firebase Authentication servers, ensuring compliance with modern security standards.
 
-### 3.2 Real-Time Marketplace Feed
-The core dashboard (`guard.js`) uses Firestore's snapshot listeners and query tools. Data is retrieved asynchronously and injected into the DOM dynamically. Every "Gig" is tracked by an `authorId`, linking it natively to the user's secure profile.
+### 3.2 Dynamic Marketplace Feed
+The core dashboard (`guard.js`) uses Firestore's asynchronous query tools (`getDocs`). Data is fetched dynamically upon page load or when new tasks are published, then injected securely into the DOM. Every "Gig" is tracked by an `authorId`, linking it natively to the user's secure profile.
 
 ### 3.3 The Node.js REST API Integration
 To fulfill advanced computing requirements and secure data handling, three distinct endpoints were built into the standalone `server.js` Node application:
