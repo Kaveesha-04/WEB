@@ -125,7 +125,7 @@ function setupContactForm(contactBtn) {
         <div class="modal-overlay" id="contactSupportModal" style="z-index: 9999;">
             <div class="auth-card" style="max-width: 400px; padding: 2rem;">
                 <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-xl font-bold">Contact Support</h2>
+                    <h2 class="text-xl font-bold">Message Admin</h2>
                     <button class="close-btn" id="closeContactModal" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
                 </div>
                 <form id="contactSupportForm">
@@ -137,7 +137,7 @@ function setupContactForm(contactBtn) {
                         <label class="block mb-1 text-sm">Message</label>
                         <textarea id="contactMessage" class="w-full" rows="4" required placeholder="How can we help?"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary w-full" id="contactSubmitBtn">Send Message to Backend</button>
+                    <button type="submit" class="btn btn-primary w-full" id="contactSubmitBtn">Send to Admin</button>
                     <p id="contactStatusMessage" class="text-center mt-3 text-sm" style="display:none;"></p>
                 </form>
             </div>
@@ -205,7 +205,7 @@ function setupContactForm(contactBtn) {
             statusMsg.textContent = 'Failed to connect to Node.js backend.';
         } finally {
             submitBtn.disabled = false;
-            submitBtn.textContent = 'Send Message to Backend';
+            submitBtn.textContent = 'Send to Admin';
         }
     });
 }
