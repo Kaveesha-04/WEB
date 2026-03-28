@@ -29,7 +29,7 @@ To prevent Git merge conflicts and allow all 5 team members to develop in parall
 ├── 📁 js/               # ES6 Modules (MUST use type="module" in HTML)
 │   ├── firebase-config.js # Database initialization keys (Owner: Architect)
 │   ├── auth.js          # Login/Signup logic (Owner: Gatekeeper)
-│   ├── board.js         # Fetching/posting live gigs (Owner: Data Wrangler)
+│   ├── guard.js         # Fetching/posting live gigs (Owner: Data Wrangler)
 │   └── profile.js       # Managing user-specific gigs (Owner: Profile Manager)
 │
 ├── index.html           # Login & Registration screen
