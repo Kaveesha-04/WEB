@@ -1,9 +1,9 @@
 // backend-integration.js
 // Handles frontend requests to the new Node.js backend
 
-const API_BASE_URL = window.location.hostname === 'localhost' 
-    ? 'http://localhost:3000/api' 
-    : 'https://APP-NAME-HERE.onrender.com/api'; // <-- You will change this when you deploy!
+const API_BASE_URL = window.location.hostname === 'localhost'
+    ? 'http://localhost:3000/api'
+    : 'https://web-9c98.onrender.com'; // <-- You will change this when you deploy!
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -32,10 +32,10 @@ async function fetchStats() {
     try {
         const response = await fetch(`${API_BASE_URL}/stats`);
         const data = await response.json();
-        
+
         const activeUsersEl = document.getElementById('statActiveUsers');
         const gigsCompletedEl = document.getElementById('statGigsCompleted');
-        
+
         if (activeUsersEl && gigsCompletedEl) {
             activeUsersEl.textContent = data.activeUsers;
             gigsCompletedEl.textContent = data.gigsCompleted;
@@ -88,31 +88,31 @@ function setupContactForm(contactBtn) {
     closeBtn.addEventListener('click', () => {
         modal.style.display = 'none';
     });
-    
+
     // Close on clicking outside
     modal.addEventListener('click', (e) => {
-        if(e.target === modal) modal.style.display = 'none';
+        if (e.target === modal) modal.style.display = 'none';
     });
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         const email = document.getElementById('contactEmail').value;
         const message = document.getElementById('contactMessage').value;
         const submitBtn = document.getElementById('contactSubmitBtn');
-        
+
         submitBtn.disabled = true;
         submitBtn.textContent = 'Sending...';
-        
+
         try {
             const response = await fetch(`${API_BASE_URL}/contact`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, message })
             });
-            
+
             const result = await response.json();
-            
+
             statusMsg.style.display = 'block';
             if (result.success) {
                 statusMsg.style.color = 'var(--accent)';
