@@ -3,7 +3,7 @@
 
 const API_BASE_URL = window.location.hostname === 'localhost'
     ? 'http://localhost:3000/api'
-    : 'https://web-9c98.onrender.com'; // <-- You will change this when you deploy!
+    : 'https://web-9c98.onrender.com/api';
 
 document.addEventListener('DOMContentLoaded', () => {
 
