@@ -3,8 +3,6 @@
 ## 📖 Project Overview
 University students often need quick favors, technical help, or have skills they want to monetize locally on campus (e.g., fixing a laptop, tutoring a specific module). **UniGig** is a centralized, real-time noticeboard designed specifically for the campus community to post, accept, and manage micro-tasks securely.
 
-**Developed by a 5-person undergraduate IT team.**
-
 ## 🛠️ Tech Stack
 * **Frontend:** HTML5, CSS3 (Modular Architecture)
 * **Frontend Logic:** Vanilla JavaScript (ES6 Modules)
