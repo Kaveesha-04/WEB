@@ -30,7 +30,7 @@ University students often need quick favors, technical help, or have skills they
 
 ---
 
-## 📂 Architecture & File Ownership
+## 📂 System Architecture 
 This project is built as a **Multi-Page Application (MPA)** with strictly isolated files and a custom Node.js REST API backend to extend functionality.
 
 ```text
@@ -39,15 +39,15 @@ This project is built as a **Multi-Page Application (MPA)** with strictly isolat
 ├── 📁 assets/           # UI images, icons, logos
 │
 ├── 📁 css/              # Modular Stylesheets
-│   ├── global.css       # Variables, fonts, navbar (Owner: UI Lead)
-│   ├── auth.css         # Login page styling (Owner: Gatekeeper)
-│   └── dashboard.css    # Gig feed and profile styling (Owner: UI Lead)
+│   ├── global.css       # Variables, fonts, navbar 
+│   ├── auth.css         # Login page styling 
+│   └── dashboard.css    # Gig feed and profile styling 
 │
 ├── 📁 js/               # ES6 Modules (MUST use type="module" in HTML)
-│   ├── firebase-config.js # Database initialization keys (Owner: Architect)
-│   ├── auth.js          # Login/Signup logic (Owner: Gatekeeper)
-│   ├── guard.js         # Fetching/posting live gigs (Owner: Data Wrangler)
-│   ├── profile.js       # Managing user-specific gigs (Owner: Profile Manager)
+│   ├── firebase-config.js # Database initialization keys 
+│   ├── auth.js          # Login/Signup logic 
+│   ├── guard.js         # Fetching/posting live gigs 
+│   ├── profile.js       # Managing user-specific gigs 
 │   └── backend-integration.js # Node.js backend hooks
 │
 ├── index.html           # Login & Registration screen
